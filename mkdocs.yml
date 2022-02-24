@@ -1,0 +1,39 @@
+site_name: Scala Learning
+repo_url: https://github.com/abdheshkumar/abdheshkumar.github.io
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep orange
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep orange
+      toggle:
+        icon: material/lightbulb
+        name:
+          Switch to light mode
+nav:
+  - Home: 'index.md'
+  - 'What Is It':
+      - 'architecture': 'overview/architecture.md'
+      - 'current': 'overview/current.md'
+      - 'legacy': 'overview/legacy.md'
+  - 'Getting Started':
+      - 'collections': 'guide/collection.md'
+      - 'journey': 'guide/journey.md'
+      - 'experience': 'guide/experience.md'
+      - 'campaign': 'guide/campaign.md'
+  - 'Deep Dive':
+      - 'apps': 'dive/apps.md'
+      - 'examples': 'dive/examples.md'
+      - 'monitor': 'dive/monitor.md'
+      - 'placements': 'dive/placements.md'
+      - 'reconcile legacy': 'dive/reconcile.md'
+      - 'cicd' : 'dive/cicd.md'
+      - 'tracking' : 'dive/tracking.md'
+      - 'tracing' : 'dive/tracing.md'
+  - Contact: 'contact.md'
+  - Contribute: 'contribute.md
