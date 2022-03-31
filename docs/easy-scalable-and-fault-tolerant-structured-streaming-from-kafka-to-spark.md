@@ -1,17 +1,3 @@
----
-id: 140
-title: Easy, Scalable and Fault-tolerant Structured Streaming from Kafka to Spark
-date: 2018-02-10T15:28:56+00:00
-author: abdhesh
-layout: post
-guid: http://www.learnscala.co/?p=140
-permalink: /easy-scalable-and-fault-tolerant-structured-streaming-from-kafka-to-spark/
-categories:
-  - Kafka
-  - Scala
-  - Spark
-  - Spark Streaming
----
 In this blog post, I will explain about spark structured streaming. Let&#8217;s first talk about what is structured streaming and how it works?  
 **Structured Streaming** is a scalable and fault-tolerant stream processing engine built on the Spark SQL engine. In short,_ **Structured Streaming provides fast, scalable, fault-tolerant, end-to-end exactly-once stream processing without the user having to reason about streaming**._The Spark SQL engine will take care of running it incrementally and continuously and updating the final result as streaming data continues to arrive.
 

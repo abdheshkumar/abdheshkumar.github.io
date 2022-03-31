@@ -1,17 +1,3 @@
----
-id: 167
-title: When should you use Future/Future.successful/Future.failed.
-date: 2018-06-24T01:21:48+01:00
-author: abdhesh
-layout: post
-guid: http://www.learnscala.co/?p=167
-permalink: /when-should-you-use-future-future-successful-future-failed/
-categories:
-  - Scala
-tags:
-  - Futrue
-  - Scala
----
 In this blog post, I would recommend when should you use Future()/Future.succcessful/Future.failed?
 
 <li style="list-style-type: none;">

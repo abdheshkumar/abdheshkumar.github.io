@@ -1,16 +1,3 @@
----
-id: 189
-title: What is Kleisli or composition of monadic functions in Scala?
-date: 2018-10-28T14:44:39+00:00
-author: abdhesh
-layout: post
-guid: http://www.learnscala.co/?p=189
-permalink: /what-is-kleisli-or-composition-of-monadic-functions-in-scala/
-categories:
-  - Functional programming
-  - Scala
-format: gallery
----
 Hi All,
 
 Hope you are doing great!

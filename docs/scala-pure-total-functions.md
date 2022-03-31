@@ -1,21 +1,3 @@
----
-id: 66
-title: Scala pure/total functions
-date: 2017-12-02T20:43:36+00:00
-author: abdhesh
-layout: post
-guid: http://www.learnscala.co/?p=66
-permalink: /scala-pure-total-functions/
-categories:
-  - Scala
-tags:
-  - Function
-  - Pure
-  - Scala
-  - Total
----
-&nbsp;
-
 In this blog, I am going to explain about pure/total function.
 
 Let&#8217;s discuss what is a function?

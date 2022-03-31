@@ -1,19 +1,3 @@
----
-id: 114
-title: 'Part-1: Multiple ways of handling an exception in scala'
-date: 2017-12-23T14:17:51+00:00
-author: abdhesh
-layout: post
-guid: http://www.learnscala.co/?p=114
-permalink: /part-1-multiple-ways-of-handling-an-exception-in-scala/
-categories:
-  - Scala
-tags:
-  - Exception
-  - Scala
-  - Try
-  - try/catch/finally
----
 There are multiple ways of handling an exception in Scala. In this blog, I will explain one by one.
 
 **1- Using try/catch/finally**

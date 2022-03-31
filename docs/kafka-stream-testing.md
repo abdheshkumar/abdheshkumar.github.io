@@ -1,21 +1,3 @@
----
-id: 170
-title: Kafka Stream Topology Testing
-date: 2018-07-02T01:37:21+01:00
-author: abdhesh
-layout: post
-guid: http://www.learnscala.co/?p=170
-permalink: /kafka-stream-testing/
-categories:
-  - Kafka
-  - Kafka-Stream
-  - Scala
-tags:
-  - Kafka
-  - Kafka-Stream-Testing
-  - Scala
-  - Stream-Testing
----
 In this blog post, I will explain how to test Kafka stream topologies.
 
 Kafka Stream topologies can be quite complex and it is important for developers to test their code. There is a new artifact <a href="https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams-test-utils" target="_blank" rel="noopener"><strong>kafka-streams-test-utils</strong></a> providing a **TopologyTestDriver**, **ConsumerRecordFactory**, and **OutputVerifier** class. You can include the new artifact as a regular dependency to your unit tests and use the test driver to test your business logic of your Kafka Streams application.
