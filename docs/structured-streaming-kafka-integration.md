@@ -1,18 +1,3 @@
----
-id: 160
-title: Structured Streaming + Kafka Integration
-date: 2018-02-24T01:13:02+00:00
-author: abdhesh
-layout: post
-guid: http://www.learnscala.co/?p=160
-permalink: /structured-streaming-kafka-integration/
-categories:
-  - Kafka
-  - Scala
-  - Spark
-  - Spark Streaming
-  - Structured Streaming
----
 In this post, I will show you how to create an end-to-end structured streaming pipeline. Let&#8217;s say, we have a requirement like:  
 **JSON data being received in Kafka, Parse nested JSON, flatten it and store in structured Parquet table and get end-to-end failure guarantees.**
 

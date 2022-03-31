@@ -1,19 +1,3 @@
----
-id: 223
-title: 'Spark: Why should we not use inferSchema = true with Dataframe?'
-date: 2020-10-27T00:12:10+00:00
-author: abdhesh
-layout: post
-guid: http://www.learnscala.co/?p=223
-permalink: /spark-why-should-we-not-use-inferschema-true-with-dataframe/
-categories:
-  - Scala
-  - Spark
-tags:
-  - inferSchema
-  - Scala
-  - Spark
----
 In this blog post, I have explained why we should not use **inferSchema = true**. It means we are telling spark to infer schema automatically.
 
 The schema means here are the **column types**. A column can be of type **String, Double, Long, etc**. 
