@@ -167,5 +167,3 @@ References:
 
 <a href="https://kafka.apache.org/11/documentation/streams/developer-guide/testing.html" target="_blank" rel="noopener">
 Kafka Streaming testing</a>
-
-&nbsp;

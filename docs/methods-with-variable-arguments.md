@@ -3,7 +3,7 @@
 - As an example, let&#8217;s define a method that takes a variable number of arguments of type String and that returns their concatenation as String:
 - For obvious reasons, a method can only have one parameter that has variable arguments and it should be the **last parameter.**
 
-{% highlight ruby %}
+```scala
 scala> def concatStrings(s: String*): String = s.mkString
 concatStrings: (s: String*)String
 
@@ -15,10 +15,10 @@ s.mkString(separator)
 
 scala> concatStringsSep("/", "a", "b", "c")
 res1: String = a/b/c
-{% endhighlight %}
+```
 you can pass sequence as variable length arguments to a function.
 
-{% highlight ruby %}
+```scala
 scala> val listOfStrings = List("first","second","third")
 listOfStrings: List[String] = List(first, second, third)
 
@@ -27,4 +27,4 @@ res5: String = firstsecondthird
 
 scala> concatStringsSep(",",listOfStrings:\_\*)
 res6: String = first,second,third
-{% endhighlight %}
+```
