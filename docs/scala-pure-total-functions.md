@@ -33,35 +33,33 @@ For example, Pure functions
 
 Pure functions in Scala,
 
-<pre><code class="scala">scala&gt;def square(a: Int) = a * a
+```scala
+scala>def square(a: Int) = a * a
 square: (a: Int)Int
 
-scala&gt; def pureFunc(x : Int, y : Int) = x + y
+scala> def pureFunc(x : Int, y : Int) = x + y
 pureFunc: (x: Int, y: Int)Int
 
-scala&gt; pureFunc(1,2)
+scala> pureFunc(1,2)
 res0: Int = 3
-scala&gt; (pureFunc(1,2), pureFunc(1,2))
+scala> (pureFunc(1,2), pureFunc(1,2))
 res1:(Int,Int) =(3,3)
-scala&gt; val fr = pureFunc(1,2)
-scala&gt;(fr,fr) //fr would not evaluate again and 
+scala> val fr = pureFunc(1,2)
+scala>(fr,fr) //fr would not evaluate again and 
 res2:(Int,Int) =(3,3)
 
-scala&gt; def impureFunc(x: Int,y: Int) = println(x+y)
+scala> def impureFunc(x: Int,y: Int) = println(x+y)
 impureFunc: (x: Int, y: Int)Unit
 
-scala&gt; impureFunc(1,2)
+scala> impureFunc(1,2)
 3
 
-scala&gt; def anotherImpureFunc(x: Int) = if(x &gt; 0) x
+scala> def anotherImpureFunc(x: Int) = if(x > 0) x
 anotherImpureFunc: (x: Int)AnyVal
 
-scala&gt; anotherImpureFunc(2)
+scala> anotherImpureFunc(2)
 res2: AnyVal = 2
 
-scala&gt; anotherImpureFunc(-1)
+scala> anotherImpureFunc(-1)
 res3: AnyVal = ()
-
-</code></pre>
-
-&nbsp;
+```
