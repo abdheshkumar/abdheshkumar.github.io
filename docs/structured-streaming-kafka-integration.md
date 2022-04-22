@@ -1,26 +1,29 @@
-In this post, I will show you how to create an end-to-end structured streaming pipeline. Let&#8217;s say, we have a requirement like:  
-**JSON data being received in Kafka, Parse nested JSON, flatten it and store in structured Parquet table and get end-to-end failure guarantees.**
+In this post, I will show you how to create an end-to-end structured streaming pipeline. Let&#8217;s say, we have a
+requirement like:  
+**JSON data being received in Kafka, Parse nested JSON, flatten it and store in structured Parquet table and get
+end-to-end failure guarantees.**
 
-<pre><code class="scala">
+```scala
 //Step-1 Creating a Kafka Source for Streaming Queries
 val rawData = spark.readStream
-.format("kafka")
-.option("kafka.boostrap.servers","")
-.option("subscribe", "topic")
-.load()
+  .format("kafka")
+  .option("kafka.boostrap.servers", "")
+  .option("subscribe", "topic")
+  .load()
 
 //Step-2
 val parsedData = rawData
-.selectExpr("cast (value as string) as json"))
-.select(from_json("json", schema).as("data"))
-.select("data.*")
+  .selectExpr("cast (value as string) as json")
+  .select(from_json("json", schema).as("data"))
+  .select("data.*")
 
 //Step-3 Writing Data to parquet
 val query = parsedData.writeStream
-.option("checkpointLocation", "/checkpoint")
-.partitionBy("date")
-.format("parquet")
-.start("/parquetTable")</code></pre>
+  .option("checkpointLocation", "/checkpoint")
+  .partitionBy("date")
+  .format("parquet")
+  .start("/parquetTable")
+```
 
 **Step-1: Reading Data from Kafka**  
 Specify kafka options to configure  
@@ -36,85 +39,103 @@ startingOffsets => latest (default) / earliest / {&#8220;topicA&#8221;:{&#8220;0
 **Step-2: Transforming Data**  
 Each row in the source(rawData) has the following schema:
 
+| Column        | Type      |
+| --------------|-----------|
+| `key`         | binary    |  
+| `value`       | binary    |
+| `topic`       | string    |
+| `partition`   | int       |  
+|`offset`       | long      | 
+|`timestamp`    | long      | 
+|`timestampType`| int       |  
+
 <table class="table">
   <tr>
     <th>
       Column
     </th>
-    
+
     <th>
       Type
     </th>
+
   </tr>
-  
+
   <tr>
     <td>
       key
     </td>
-    
+
     <td>
       binary
     </td>
+
   </tr>
-  
+
   <tr>
     <td>
       value
     </td>
-    
+
     <td>
       binary
     </td>
+
   </tr>
-  
+
   <tr>
     <td>
       topic
     </td>
-    
+
     <td>
       string
     </td>
+
   </tr>
-  
+
   <tr>
     <td>
       partition
     </td>
-    
+
     <td>
       int
     </td>
+
   </tr>
-  
+
   <tr>
     <td>
       offset
     </td>
-    
+
     <td>
       long
     </td>
+
   </tr>
-  
+
   <tr>
     <td>
       timestamp
     </td>
-    
+
     <td>
       long
     </td>
+
   </tr>
-  
+
   <tr>
     <td>
       timestampType
     </td>
-    
+
     <td>
       int
     </td>
+
   </tr>
 </table>
 
@@ -134,4 +155,4 @@ start actually starts a continuous running StreamingQuery in the Spark cluster
 
 Stay tuned for next post. 🙂
 
-**Reference**: https://spark.apache.org/docs/2.2.0/structured-streaming-kafka-integration.html
+**Reference**: https://spark.apache.org/docs/2.2.0/structured-streaming-kafka-integration.html

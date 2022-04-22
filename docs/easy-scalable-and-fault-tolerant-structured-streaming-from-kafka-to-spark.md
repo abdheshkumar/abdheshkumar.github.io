@@ -5,17 +5,19 @@ Let’s say you want to maintain a running program data received from Kafka to c
 
 First, create a local SparkSession, the starting point of all functionalities related to Spark.
 
-<pre><code class="scala">val spark = SparkSession.builder
+```scala
+val spark = SparkSession.builder
     .master("local[*]")
     .appName("app-name")
     .config("spark.executor.cores", "2")
     .config("spark.executor.memory", "4g")
     .getOrCreate()
-</code></pre>
+```
 
 Next, let’s create a streaming DataFrame that represents data received from a server Kafka server.
 
-<pre><code class="scala">/**
+```scala
+/**
 Specify one or more locations to read data from
 Built in support for Files/Kafka/Socket,pluggable
 Can include multiple sources of different types using union()
@@ -26,7 +28,7 @@ val upstream = spark.readStream
     .option("subscribe", "test-topic")
     .option("startingOffsets", "earliest")
     .load()
-</code></pre>
+```
 
 This **upstream** DataFrame represents an unbounded table containing the streaming data. This table contains seven columns data named key, value, topic, partition, offset, timestamp and timestampType. each streaming data becomes a row in the table.  
 The **upstream** DataFrame has the following columns:
@@ -122,19 +124,21 @@ The **upstream** DataFrame has the following columns:
 
 For more information, you can visit on <a href="http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html" target="_blank" rel="noopener">Spark-Kafka strutucured streaming options</a>.
 
-<pre><code class="scala">val data = upstream.selectExpr("CAST(value AS STRING)")
+```scala
+val data = upstream.selectExpr("CAST(value AS STRING)")
 val downstream = data
     .writeStream
     .format("console")
     .start()
 
   downstream.awaitTermination()
-</code></pre>
+```
 
 So now you have transformed DataFrame one column named “value” by Casting binary value to string and injected console sink. All data coming from Kafka will print on console.  
 Here is an example that will receive data from multiple Kafka topics and will partitioned data by topic name.
 
-<pre><code class="scala">val spark = SparkSession.builder
+```scala
+val spark = SparkSession.builder
     .master("local[*]")
     .appName("app-name")
     .config("spark.executor.cores", "2")
@@ -160,13 +164,14 @@ val upstream = spark.readStream
     .option("checkpointLocation", checkpointLocation)
     .start()
 
-  downstream.awaitTermination()</code></pre>
+  downstream.awaitTermination()
+```
 
 Here is <a href="https://github.com/abdheshkumar/spark-practices/blob/master/src/main/scala/KafkaToHdfsUsingSpark.scala" target="_blank" rel="noopener">complete source code</a>.
 
 **Basic Concepts:**
 
-<img loading="lazy" class="alignnone wp-image-142 size-full" src="http://www.learnscala.co/wp-content/uploads/2018/02/structured-streaming-stream-as-a-table.png" alt="" width="1472" height="792" srcset="http://www.learnscala.co/wp-content/uploads/2018/02/structured-streaming-stream-as-a-table.png 1472w, http://www.learnscala.co/wp-content/uploads/2018/02/structured-streaming-stream-as-a-table-300x161.png 300w, http://www.learnscala.co/wp-content/uploads/2018/02/structured-streaming-stream-as-a-table-768x413.png 768w, http://www.learnscala.co/wp-content/uploads/2018/02/structured-streaming-stream-as-a-table-1024x551.png 1024w" sizes="(max-width: 1472px) 100vw, 1472px" /> 
+<img loading="lazy" class="alignnone wp-image-142 size-full" src="/img/uploads/2018/02/structured-streaming-stream-as-a-table-768x413.png" alt=""/> 
 
 A query on the input will generate the “Result Table”. Every trigger interval (say, every 1 second), new rows get appended to the Input Table, which eventually updates the Result Table. Whenever the result table gets updated, we would want to write the changed result rows to an external sink.  
 Note that Structured Streaming does not materialize the entire table.

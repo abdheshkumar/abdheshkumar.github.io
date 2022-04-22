@@ -1,13 +1,13 @@
 **1. <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">Download and Install Java 8</a>**
 
-```scala
+```text
 abdhesh@abdhesh-latitude:~/Documents/Applications$ wget http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz
 ```
 
 
 Extract tar file:
 
-```
+```text
 abdhesh@abdhesh-latitude:~/Documents/Applications$ tar -xf jdk-8u151-linux-x64.tar.gz 
 abdhesh@abdhesh-latitude:~/Documents/Applications$ ls
 jdk-8u151-linux-x64  jdk-8u151-linux-x64.tar.gz
@@ -15,26 +15,26 @@ jdk-8u151-linux-x64  jdk-8u151-linux-x64.tar.gz
 
 Set environment path variable for Java
 
-```
+```text
 abdhesh@abdhesh-latitude:~/Documents/Applications$ sudo vim ~/.bashrc
 ```
 
 Above command will open a file and you need to add below lines at end of the file.
 
-```
+```text
 export JAVA=/home/abdhesh/Documents/Applications/jdk-8u151-linux-x64
 export PATH=$JAVA/bin:$PATH
 ```
 
 Save and exit. Now reload a **.bashrc** file on same terminal&#8217;s session
 
-```
+```text
 abdhesh@abdhesh-latitude:~/Documents/Applications$ source ~/.bashrc 
 ```
 
 Run java version command:
 
-```
+```text
 abdhesh@abdhesh-latitude:~/Documents/Applications$ java -version
 java version "1.8.0_151"
 Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
@@ -43,13 +43,13 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)
 
 **2. <a href="https://www.scala-lang.org/download/" target="_blank" rel="noopener">Download and Install Scala</a>**
 
-```
+```text
 abdhesh@abdhesh-latitude:~/Documents/Applications$ wget https://downloads.lightbend.com/scala/2.12.4/scala-2.12.4.tgz
 ```
 
 Extract tar file:
 
-```
+```text
 abdhesh@abdhesh-latitude:~/Documents/Applications$ tar -xf scala-2.12.4.tgz 
 abdhesh@abdhesh-latitude:~/Documents/Applications$ ls
 scala-2.12.4  scala-2.12.4.tgz
@@ -135,8 +135,8 @@ Using Scala version 2.11.8 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_151)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
-scala&gt; 
-scala&gt; val df  = spark.read.json("spark-2.2.1-bin-hadoop2.7/data/people.json")
+scala> 
+scala> val df  = spark.read.json("spark-2.2.1-bin-hadoop2.7/data/people.json")
 df: org.apache.spark.sql.DataFrame = [age: bigint, name: string]
 
 scala&gt; df.filter("age &gt;= 19").select("name","age").show()
@@ -148,11 +148,11 @@ scala&gt; df.filter("age &gt;= 19").select("name","age").show()
 +------+---+
 
 
-scala&gt; //using Sql
+scala> //using Sql
 
-scala&gt; df.createOrReplaceTempView("people")
+scala> df.createOrReplaceTempView("people")
 
-scala&gt; spark.sql("SELECT * FROM people WHERE age &gt;=19").show()
+scala> spark.sql("SELECT * FROM people WHERE age &gt;=19").show()
 +---+------+
 |age|  name|
 +---+------+
@@ -161,7 +161,7 @@ scala&gt; spark.sql("SELECT * FROM people WHERE age &gt;=19").show()
 +---+------+
 
 
-scala&gt; 
+scala> 
 ```
 
 Stay tuned for next blog post 🙂
