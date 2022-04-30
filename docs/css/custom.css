@@ -12,3 +12,6 @@
         transform: none;
     }
 }
+.md-typeset ul li {
+    margin-bottom: unset;
+}
