@@ -17,7 +17,12 @@
 
 ####PROFESSIONAL EXPERIENCE
 
-######Call Handling Services, London (Software Engineer) (Feb 2017- Current)
+##### Expedia Group, London (Software Development Engineer III) (Jun 2021- Current)
+- Developing gPRC based applications using Functional programming with **Scala, Cat-effect, Protobuf, Kafka and MongoDB**
+- Developing Spark applications using **Scala**
+- Developed Streaming app using **Kotlin and Kafka**
+
+##### Call Handling Services, London (Software Engineer) (Feb 2017- May 2021)
 - Designed and developed backend architecture of a reactive application
 - Designed Event Sourced **CQRS** system following the DDD approach backed by Akka Persistence using Cassandra Journal and Kafka. Using functional libs Cats and ZIO.
 - Designed a data processing system that processes the events emitted by entities.
@@ -26,13 +31,13 @@
 - Reduce call graph processing time from 1.5 min to 0.5 sec.
 - Replaced existing system by new design to achieve vertical and horizontal scalability
 
-###### Parkar Consulting, India (Sr. Technical Associate) (April 2015- Feb 2017)
+##### Parkar Consulting, India (Sr. Technical Associate) (Apr 2015- Feb 2017)
 - Develop services to harvest reviews/feedback from sources and social data
 - Develop service to translate data, apply NLP and then persist reviews/feedback
 - Improve Legacy Code and provide new Architecture process 1.2 million/sec reviews
 - Providing Code refactoring suggestions/Documents
 
-##### Knoldus Software LLC, India (Software Consultant) (March 2013 to Apr 2015)
+##### Knoldus Software LLC, India (Software Consultant) (Mar 2013 to Apr 2015)
 - Developed Model and services using Lift web framework
 - Developed Rest API
 - Developed Lift Snippet and Comet Actor Push Messaging
