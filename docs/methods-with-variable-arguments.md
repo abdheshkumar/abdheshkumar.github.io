@@ -22,9 +22,9 @@ you can pass sequence as variable length arguments to a function.
 scala> val listOfStrings = List("first","second","third")
 listOfStrings: List[String] = List(first, second, third)
 
-scala> concatStrings(listOfStrings:\_\*)
+scala> concatStrings(listOfStrings:_*)
 res5: String = firstsecondthird
 
-scala> concatStringsSep(",",listOfStrings:\_\*)
+scala> concatStringsSep(",",listOfStrings:_*)
 res6: String = first,second,third
 ```
