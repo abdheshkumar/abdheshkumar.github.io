@@ -20,7 +20,7 @@
 ##### Expedia Group, London (Software Development Engineer III) (Jun 2021- Current)
 - Developing gPRC based applications using Functional programming with **Scala, Cat-effect, Protobuf, Kafka and MongoDB**
 - Developing Spark applications using **Scala**
-- Developed Streaming app using **Kotlin and Kafka**
+- Implemented drive app downloads by offering loyalty tier upgrades to new blue tier members use case using **Kotlin and Kafka stream**
 
 ##### Call Handling Services, London (Software Engineer) (Feb 2017- May 2021)
 - Designed and developed backend architecture of a reactive application
