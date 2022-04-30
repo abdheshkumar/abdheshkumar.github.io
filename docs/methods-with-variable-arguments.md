@@ -10,7 +10,7 @@ concatStrings: (s: String*)String
 scala> concatStrings("a", "b", "c")
 res0: String = abc
 
-scala> def concatStringsSep(separator: String, s: String\*): String =
+scala> def concatStringsSep(separator: String, s: String*): String =
 s.mkString(separator)
 
 scala> concatStringsSep("/", "a", "b", "c")
