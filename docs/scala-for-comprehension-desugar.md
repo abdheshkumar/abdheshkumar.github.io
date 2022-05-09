@@ -14,7 +14,7 @@ val tree =
 //reflect.runtime.universe.Tree = optA.flatMap(((a) => optB.map(((b) => scala.Tuple2(a, b)))))
 ```
 
-##### Using reify
+#### Using reify
 
 ```scala
 import scala.reflect.runtime.universe._
