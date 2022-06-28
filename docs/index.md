@@ -1,4 +1,4 @@
-**SDE-III - Scala | Spark | Kafka | Kotlin at Expedia Group, London**
+**Expedia-SDE-III - Scala | Spark | Kafka | Kotlin at Expedia Group, London**
 
 ####PROFILE SUMMARY
 - Over 10 years of strong IT industry experience as a Software Engineer

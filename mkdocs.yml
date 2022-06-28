@@ -3,16 +3,17 @@ site_name: JVM Language Learning
 theme:
   name: material
   palette:
-    - scheme: slate
-      primary: deep blue
-      toggle:
-        icon: material/lightbulb-outline
-        name: Switch to light mode
     - scheme: default
       primary: deep blue
       toggle:
         icon: material/lightbulb
         name: Switch to dark mode
+    - scheme: slate
+      primary: deep blue
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+
   features:
     - content.code.annotate
   icon:
