@@ -18,6 +18,7 @@
 ####PROFESSIONAL EXPERIENCE
 
 ##### Expedia Group, London (Software Development Engineer III) (Jun 2021- Current)
+- Building gRPC applications using Scala that power the Incentives Platform, which is responsible for showing relevant and personalised deals and travel    ideas to customers. This platform is built using Scala, Cats, Cats-effect(Functional library), Cassandra, MongoDB, Elasticsearch and Spark.
 - Developing gPRC based applications using Functional programming with **Scala, Cat-effect, Protobuf, Kafka and MongoDB**
 - Developing Spark applications using **Scala**
 - Implemented drive app downloads by offering loyalty tier upgrades to new blue tier members use case using **Kotlin and Kafka stream**
