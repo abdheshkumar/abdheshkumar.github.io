@@ -63,6 +63,7 @@ nav:
       - 'When should you use Future, Future.successful and Future.failed': 'when-should-you-use-future-future-successful-future-failed.md'
       - 'What is kleisli or composition of monadic functions in scala': 'what-is-kleisli-or-composition-of-monadic-functions-in-scala.md'
       - 'For-Comprehension desugar': 'scala-for-comprehension-desugar.md'
+      - 'Final case class': 'final-case-class.md'
   - 'Spark and Kafka':
       - 'Spark why should we not use inferschema=true with-dataframe': 'spark-why-should-we-not-use-inferschema-true-with-dataframe.md'
       - 'Easy and fast way of installing java scala and spark': 'easy-and-fast-way-of-installing-java-scala-and-spark.md'
