@@ -1,6 +1,6 @@
 In this blog post, I will explain how to test Kafka stream topologies.
 
-Kafka Stream topologies can be quite complex and it is important for developers to test their code. There is a new
+Kafka Stream topologies can be quite complex, and it is important for developers to test their code. There is a new
 artifact <a href="https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams-test-utils" target="_blank" rel="noopener"><strong>
 kafka-streams-test-utils</strong></a> providing a **TopologyTestDriver**, **ConsumerRecordFactory**, and **
 OutputVerifier** class. You can include the new artifact as a regular dependency to your unit tests and use the test
@@ -12,7 +12,7 @@ Add below dependency in **build.sbt**
 libraryDependencies += "org.apache.kafka" % "kafka-streams-test-utils" % "1.1.0" % Test
 ```
 
-Below code example is well-known word count application.
+Below code example is a well-known word count application.
 
 ```scala
 import java.lang.Long
@@ -100,14 +100,14 @@ with very little overhead.**
 
 **Using the TopologyTestDriver in tests is easy: ** simply instantiate the driver and provide a Topology and
 StreamsBuilder#build() and Properties configs, use the driver to supply an input message to the topology, and then use
-the driver to read and verify any messages output by the topology.
+the driver to read and verify any message output by the topology.
 
-**ConsumerRecordFactory:**  
-Although the driver doesn&#8217;t use a real Kafka broker, it does simulate Kafka Consumer and Producer that read and
+**ConsumerRecordFactory:** 
+Although the driver does not use a real Kafka broker, it does simulate Kafka Consumer and Producer that read and
 write raw (byte[]) messages.  
-You can either deal with messages that have keys(byte[]) and values.
+You can too deal with messages that have keys(byte[]) and values.
 
-**Driver Set-up:**  
+**Driver Set-up:** 
 In order to create a **TopologyTestDriver** instance, you need a Topology and a Properties.  
 The configuration needs to be representative of what you&#8217;d supply to the real topology, so that means including
 several key properties (StreamsConfig).  
@@ -137,7 +137,7 @@ When TopologyTestDriver#pipeInput()(Send an input message with the given key, va
 topic to the topology and then commit the messages) is called, the driver passes the input message through to the
 appropriate source that consumes the named topic, and will invoke the processor(s) downstream of the source.
 
-If your topology&#8217;s processors forward messages to sinks, your test can then consume these output messages to
+If your topology&#8217;s processors forward messages to sink, your test can then consume these output messages to
 verify they match the expected outcome.  
 For example, if our topology should have generated 2 messages on output-topic-1 and 1 message on output-topic-2, then
 our test can obtain these messages using the TopologyTestDriver#readOutput(String, Deserializer, Deserializer)} method(
@@ -150,17 +150,17 @@ val record2: PR = driver.readOutput("output-topic-1", strDeserializer, strDeseri
 val record3: PR = driver.readOutput("output-topic-2", strDeserializer, strDeserializer)
 ```
 
-**Processor state:**  
-Some processors use Kafka state storage(StateStore), so this driver class provides the generic  
+**Processor state:** 
+Some processors use Kafka state storage(StateStore), so this driver class provides the generic 
 **getStateStore(store-name)** as well as store-type specific methods so that your tests can check the underlying state
 store(s) used by your topology&#8217;s processors.  
 In our previous example, after we supplied a single input message and checked the three output messages, our test could
 also check the key-value store to verify the processor correctly added, removed, or updated internal state.  
-Our test might have pre-populated some state before submitting the input message and verified afterwards that the
+Our test might have pre-populated some state before submitting the input message and verified afterward that the
 processor(s) correctly updated the state.
 
 Here is <a href="https://github.com/abdheshkumar/kafka-stream-testing" target="_blank" rel="noopener">
-Kafka-Streaming-Test github code</a> that I used in the blog post. In next blog post, I will write how to test complex
+Kafka-Streaming-Test github code</a> that I used in the blog post. In the next blog post, I will write how to test complex
 topologies like joins/KTables.
 
 References:

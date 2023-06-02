@@ -1,7 +1,7 @@
 **1. <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">Download and Install Java 8</a>**
 
 ```text
-abdhesh@abdhesh-latitude:~/Documents/Applications$ wget http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz
+abdhesh@abdhesh-latitude:~/Documents/Applications$ wget https://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz
 ```
 
 
@@ -19,7 +19,7 @@ Set environment path variable for Java
 abdhesh@abdhesh-latitude:~/Documents/Applications$ sudo vim ~/.bashrc
 ```
 
-Above command will open a file and you need to add below lines at end of the file.
+The Above command will open a file, and you need to add below lines at the end of the file.
 
 ```text
 export JAVA=/home/abdhesh/Documents/Applications/jdk-8u151-linux-x64
@@ -79,7 +79,7 @@ Scala code runner version 2.12.4 -- Copyright 2002-2017, LAMP/EPFL and Lightbend
 **3. <a href="https://spark.apache.org/downloads.html" target="_blank" rel="noopener">Download and Install Apache Spark</a>**
 
 ```
-abdhesh@abdhesh-latitude:~/Documents/Applications$ wget http://apache.mirror.anlx.net/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz
+abdhesh@abdhesh-latitude:~/Documents/Applications$ wget https://apache.mirror.anlx.net/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz
 ```
 
 Extract tar file:
@@ -96,7 +96,7 @@ Set environment path variable for spark
 abdhesh@abdhesh-latitude:~/Documents/Applications$ sudo vim ~/.bashrc
 ```
 
-Above command will open a file and you need to add below lines at end of the file.
+The above command will open a file, and you need to add below lines at the end of the file.
 
 ```
 export SPARK=/home/abdhesh/Documents/Applications/spark-2.2.1-bin-hadoop2.7

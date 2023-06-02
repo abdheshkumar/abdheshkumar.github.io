@@ -14,7 +14,7 @@ val spark = SparkSession.builder
     .getOrCreate()
 ```
 
-Next, let’s create a streaming DataFrame that represents data received from a server Kafka server.
+Next, let’s create a streaming DataFrame that represents data received from a Kafka server.
 
 ```scala
 /**
@@ -30,7 +30,10 @@ val upstream = spark.readStream
     .load()
 ```
 
-This **upstream** DataFrame represents an unbounded table containing the streaming data. This table contains seven columns data named key, value, topic, partition, offset, timestamp and timestampType. each streaming data becomes a row in the table.  
+This **upstream** DataFrame represents an unbounded table
+containing the streaming data.This table contains seven column data named key,
+value, topic, partition, offset, timestamp and timestampType.
+Each streaming data becomes a row in the table.  
 The **upstream** DataFrame has the following columns:
 
 <table>
@@ -122,7 +125,9 @@ The **upstream** DataFrame has the following columns:
   </tr>
 </table>
 
-For more information, you can visit on <a href="http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html" target="_blank" rel="noopener">Spark-Kafka strutucured streaming options</a>.
+For more information,
+you can visit on <a href="http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html"
+target="_blank" rel="noopener">Spark-Kafka structured streaming options</a>.
 
 ```scala
 val data = upstream.selectExpr("CAST(value AS STRING)")
@@ -134,8 +139,8 @@ val downstream = data
   downstream.awaitTermination()
 ```
 
-So now you have transformed DataFrame one column named “value” by Casting binary value to string and injected console sink. All data coming from Kafka will print on console.  
-Here is an example that will receive data from multiple Kafka topics and will partitioned data by topic name.
+So now you have transformed DataFrame one column named “value” by Casting binary value to string and injected console sink. All data coming from Kafka will print on the console.  
+Here is an example that will receive data from multiple Kafka topics and will partition data by topic name.
 
 ```scala
 val spark = SparkSession.builder
@@ -182,7 +187,9 @@ Note that Structured Streaming does not materialize the entire table.
 **Socket source (for testing)** &#8211; Reads UTF8 text data from a socket connection. The listening server socket is at the driver. Note that this should be used only for testing as this does not provide end-to-end fault-tolerance guarantees.  
 **Rate source (for testing)** &#8211; Generates data at the specified number of rows per second, each output row contains a timestamp and value.
 
-There is a lot to explain about structured streaming so I can not write everything in the single post but hope you get a basic idea how structured stream works with Kafka.
+There is a lot to explain about structured streaming,
+so I can not write everything in the single post
+but hope you get a basic idea of how structured stream works with Kafka.
 
 **References:**  
 <a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html" target="_blank" rel="noopener">Structured Streaming Programming Guide</a>

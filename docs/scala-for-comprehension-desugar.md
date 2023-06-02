@@ -30,6 +30,6 @@ reify(for {
 //optA.flatMap(((a) => optB.map(((b) => Tuple2.apply(a, b)))))
 ```
 
-#### Using IntelliJ Idea
+#### Using IntelliJ IDEA
 
 ![](img/for-comprehension.png "Scala For-comprehension")

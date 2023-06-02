@@ -30,9 +30,18 @@ theme:
       bug: octicons/bug-16
       example: octicons/beaker-16
       quote: octicons/quote-16
+plugins:
+  - social:
+      cards_dir: assets/images/social
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/abdheshkumar
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/abdhesh_rkg
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/abdhesh
 
-extra_css:
-  - css/custom.css
 
 # Extensions
 markdown_extensions:
@@ -43,12 +52,13 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
+  - pymdownx.mark
   - def_list
-  - pymdownx.tasklist:
-      custom_checkbox: true
   - attr_list
   - md_in_html
   - tables
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
@@ -71,4 +81,5 @@ nav:
       - 'Structured streaming kafka integration': 'structured-streaming-kafka-integration.md'
       - 'Kafka stream testing': 'kafka-stream-testing.md'
 
-# Docs
+copyright: |
+  &copy; 2023 <a href="https://github.com/abdheshkumar"  target="_blank" rel="noopener">Abdhesh Kumar</a>

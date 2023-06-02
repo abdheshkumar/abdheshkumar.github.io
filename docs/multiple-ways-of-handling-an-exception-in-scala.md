@@ -46,7 +46,7 @@ val tryCatchWithValue: Int = try {
 **2. Using scala.util.Try**  
 The **Try** type represents a computation that may either result in an exception, or return a successfully computed
 value.  
-Instances of **Try[T]**, are either an instance of **scala.util.Success[T]** or **scala.util.Failure[T]**
+Instances of **Try[T]** are either an instance of **scala.util.Success[T]** or **scala.util.Failure[T]**
 
 The **Try** has an ability to _pipeline_, or chain, operations, catching exceptions along the way like **flatMap**
 and **map** combinators.
@@ -112,7 +112,7 @@ r1.fold(
 )
 
 computeWithTry("123").fold(
-  ex => println(s"Exception--${ex}"),
+  ex => println(s"Exception--$ex"),
   value => println(compute(value, 0))
 ) // Exception--java.lang.ArithmeticException: / by zero
 
@@ -126,7 +126,7 @@ computeWithTry("123").map(n => compute(n, 0)) //Failure(java.lang.ArithmeticExce
 computeWithTry("abc").map(n => compute(n, 2)) //Failure(java.lang.NumberFormatException: For input string: "abc")
 ```
 
-**Note**: only non-fatal exceptions are caught by the combinators on
+**Note**: The combinators catch only non-fatal exceptions
 Try ([see scala.util.control.NonFatal](http://www.scala-lang.org/api/2.12.4/scala/util/control/NonFatal$.html)). Serious
 system errors, on the other hand, will be thrown.
 
@@ -134,6 +134,6 @@ Here you can
 find <a href="https://gist.github.com/abdheshkumar/7965a9e5df7982878ac61ce09fe92da6" target="_blank" rel="noopener">
 complete code</a>
 
-Stay tuned for next part 🙂
+Stay tuned for the next part 🙂
 
 **References: [scala.util.Try](http://www.scala-lang.org/api/2.12.4/scala/util/Try.html)**

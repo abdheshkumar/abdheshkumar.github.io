@@ -30,16 +30,16 @@
 - Designed an Enrichment System to perform write-time joins.
 - Designed a serialisation layer using **Google Protocol Buffers** for Schema Evolution
 - Reduce call graph processing time from 1.5 min to 0.5 sec.
-- Replaced existing system by new design to achieve vertical and horizontal scalability
+- Replaced an existing system by new design to achieve vertical and horizontal scalability
 
 ##### Parkar Consulting, India (Sr. Technical Associate) (Apr 2015- Feb 2017)
 - Develop services to harvest reviews/feedback from sources and social data
 - Develop service to translate data, apply NLP and then persist reviews/feedback
 - Improve Legacy Code and provide new Architecture process 1.2 million/sec reviews
-- Providing Code refactoring suggestions/Documents
+- Providing Code-refactoring suggestions/Documents
 
 ##### Knoldus Software LLC, India (Software Consultant) (Mar 2013 to Apr 2015)
-- Developed Model and services using Lift web framework
+- Developed Model and services using a Lift web framework
 - Developed Rest API
 - Developed Lift Snippet and Comet Actor Push Messaging
 - Developed Ajax in Lift Application, Designed MongoDB structure

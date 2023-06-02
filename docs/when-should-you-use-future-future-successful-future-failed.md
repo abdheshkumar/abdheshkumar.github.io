@@ -1,15 +1,15 @@
-In this blog post, I would recommend when should you use Future()/Future.succcessful/Future.failed?
+In this blog post, I would recommend when should you use Future()/Future.successful/Future.failed?
 
 <li style="list-style-type: none;">
   <ol>
     <li>
-      <strong>Use Future.apply() or simply Future() (i.e., Future block):</strong> In the situations, where something to be done asynchronously that can complete sometime in future and may deal with some time consuming operations such as network calls, database operations communicate with one or many other services, processing huge data by consuming multiple cores and etc.
+      <strong>Use Future.apply() or simply Future() (i.e., Future block):</strong> In the situations, where something to be done asynchronously that can complete sometime in future and may deal with some time-consuming operations such as network calls, database operations communicate with one or many other services, processing huge data by consuming multiple cores and etc.
     </li>
     <li>
-      <strong>Use Future.successful: </strong>When a literal or already computed value to be passed back as a successful future response.
+      <strong>Use Future.successful: </strong>When a literal or already computed value to be passed back as a successful future response.
     </li>
     <li>
-      <strong>Use Future.failed:</strong> When a known and literal exception to be thrown back without performing any further actions in the future.
+      <strong>Use Future.failed:</strong> When a known and literal exception to be thrown back without performing any further actions in the future.
     </li>
     <li>
       <strong>Future.fromTry:</strong> When you already computed Try a value
@@ -17,7 +17,7 @@ In this blog post, I would recommend when should you use Future()/Future.succces
   </ol>
 </li>
 
-**Future**.successful**, Future.failed, and Future.fromTry** when you need to create an instance of Future and you already have the value.
+**Future**.successful**, Future.failed, and Future.fromTry** when you need to create an instance of the Future and you already have the value.
 
 Reference:
 
