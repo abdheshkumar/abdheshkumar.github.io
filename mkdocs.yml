@@ -30,9 +30,6 @@ theme:
       bug: octicons/bug-16
       example: octicons/beaker-16
       quote: octicons/quote-16
-plugins:
-  - social:
-      cards_dir: assets/images/social
 extra:
   social:
     - icon: fontawesome/brands/github-alt
