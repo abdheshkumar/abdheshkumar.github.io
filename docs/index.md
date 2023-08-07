@@ -6,7 +6,7 @@
 - Strong experience of working on huge data sets using Big Data and Hadoop tools
 
 ####LANGUAGES AND TECHNOLOGIES
-- **Language:** **Scala**, Akka, **Cats/Cats-effect, Http4s, Circe, ZIO**, ES6-Javascript, **Java**, fs2, **Protobuf**, pure-config.
+- **Language:** **Scala**, Akka, **Cats/Cats-effect, Http4s, Circe, ZIO**, ES6-Javascript, **Java**, fs2, **Protobuf, gRPC**, pure-config.
 - **Big data:** Hadoop, **Spark**, MapReduce, Hive, Hbase, **Kafka**
 - **Tools/Frameworks:** AWS, **Git**, Jenkins, Docker, Kubernetes, Agile, Scrum
 - **Databases:** Mysql, Hbase, **MongoDB**, Redis, **Cassandra**, Dgraph
