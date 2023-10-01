@@ -90,6 +90,11 @@ markdown_extensions:
 
 nav:
   - 'Abdhesh Kumar': 'index.md'
+  - 'Kafka':
+      - 'Kafka': 'kafka/index.md'
+      - 'Kafka Producer': 'kafka/kafka-producer.md'
+      - 'Kafka Consumer': 'kafka/kafka-consumer.md'
+      - 'Kafka Tuning': 'kafka/kafka-tuning.md'
   - 'Scala':
       - 'Sbt testOnly': 'sbt-testonly.md'
       - 'Methods with variable arguments': 'methods-with-variable-arguments.md'
