@@ -1,7 +1,7 @@
 **Expedia-SDE-III - Scala | Spark | Kafka | Kotlin at Expedia Group, London**
 
 ####PROFILE SUMMARY
-- Over 11 years of strong IT industry experience as a Software Engineer
+- Over 12 years of strong IT industry experience as a Software Engineer
 - Designing and developing a cloud-based scalable reactive application with emphasis **Scala, Akka, Spark, Kafka, Kotlin, Spring, Java and ES6 - Javascript, ReactJS**
 - Strong experience of working on huge data sets using Big Data and Hadoop tools
 

@@ -1,4 +1,4 @@
-site_name: JVM Language Learning
+site_name: Code, Learn, Repeat
 
 theme:
   name: material
@@ -110,6 +110,9 @@ nav:
       - 'Easy scalable and fault tolerant structured streaming from kafka to spark': 'easy-scalable-and-fault-tolerant-structured-streaming-from-kafka-to-spark.md'
       - 'Structured streaming kafka integration': 'structured-streaming-kafka-integration.md'
       - 'Kafka stream testing': 'kafka-stream-testing.md'
+
+plugins:
+  - sitemap
 
 copyright: |
   &copy; 2023 <a href="https://github.com/abdheshkumar"  target="_blank" rel="noopener">Abdhesh Kumar</a>
