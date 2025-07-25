@@ -10,10 +10,13 @@ pip3 install --upgrade pip
 pip3 install mkdocs
 
 `STEP 4: INSTALL MKDOCS-MATERIAL`
-pip3 install mkdocs-material
+pip3 install "mkdocs-material[all]"
 
 `STEP 5: INSTALL MKDOCS-MATERIAL-EXTENSIONS`
 pip3 install mkdocs-material-extensions
+
+`Check mkdocs-material`
+pip3 show mkdocs-material
 
 # Welcome to MkDocs
 

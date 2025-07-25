@@ -112,7 +112,7 @@ nav:
       - 'Kafka stream testing': 'kafka-stream-testing.md'
 
 plugins:
-  - sitemap
+  - blog
 
 copyright: |
   &copy; 2023 <a href="https://github.com/abdheshkumar"  target="_blank" rel="noopener">Abdhesh Kumar</a>
