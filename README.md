@@ -1,4 +1,5 @@
 https://www.mkdocs.org/getting-started/#installation
+
 https://squidfunk.github.io/mkdocs-material/reference/
 `STEP 1: INSTALL PYTHON3`
 brew install python3
