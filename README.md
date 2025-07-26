@@ -22,8 +22,6 @@ pip3 install mkdocs-material-extensions
 `Check mkdocs-material`
 pip3 show mkdocs-material
 
-# Welcome to MkDocs
-
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
