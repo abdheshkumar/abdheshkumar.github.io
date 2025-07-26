@@ -2,7 +2,9 @@
 
 #### PROFILE SUMMARY
 Seasoned Software Engineer with over **12 years** of experience in designing and developing scalable, cloud-native microservices and big data applications. 
-Proficient in building high-performance systems using **Scala, Spark, and Kafka**, with deep expertise in reactive programming and distributed systems. At Expedia, led the development of **gRPC and GraphQL microservices in Kotlin and Java**, while delivering robust streaming solutions using Kafka, Reactor, and Kafka Streams. 
+Proficient in building high-performance systems using **Scala, Spark, and Kafka**, with deep expertise in reactive programming and distributed systems.
+
+**At Expedia**, led the development of **gRPC and GraphQL microservices in Kotlin, Java and Spring Boot** while delivering robust streaming solutions using Kafka, Reactor, and Kafka Streams. 
 Demonstrated strong command over modern architectures, including event sourcing, CQRS, and cloud-based deployments, with a proven track record of reducing system latency and improving throughput in mission-critical environments.
 
 #### LANGUAGES AND TECHNOLOGIES
