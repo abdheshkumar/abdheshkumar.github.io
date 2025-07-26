@@ -6,22 +6,33 @@
 - Strong experience of working on huge data sets using Big Data and Hadoop tools
 
 ####LANGUAGES AND TECHNOLOGIES
-- **Language:** **Scala**, Akka, **Cats/Cats-effect, Http4s, Circe, ZIO**, ES6-Javascript, **Java**, fs2, **Protobuf, gRPC**, pure-config.
+- **Programming Languages & Web Technologies:** **Scala**, Akka, **Cats/Cats-effect, Http4s, Circe, ZIO**, ES6-Javascript, **Java**, fs2, **Protobuf, gRPC**, pure-config.
 - **Big data:** Hadoop, **Spark**, MapReduce, Hive, Hbase, **Kafka**
-- **Tools/Frameworks:** AWS, **Git**, Jenkins, Docker, Kubernetes, Agile, Scrum
-- **Databases:** Mysql, Hbase, **MongoDB**, Redis, **Cassandra**, Dgraph
+- **Tools/Frameworks & Cloud:**AWS**, Git, Jenkins, **Docker**, **Kubernetes**, Agile, Scrum, **Spring Boot**, Cloud Computing
+- **Databases:** Mysql, Hbase, **MongoDB**, Redis, **Cassandra**, Dgraph, **DynamoDB**
 
 ####ACADEMIC QUALIFICATION
 - **M.C.A**(Master of Computer Applications) from Dr. A.P.J. Abdul Kalam Technical University, India in 2011.
-- **B.Sc(Maths)** from Dr. Bhimrao Ambedkar University, India in 2008.
+- **B.Sc.(Maths)** from Dr. Bhimrao Ambedkar University, India in 2008.
 
 #### PROFESSIONAL EXPERIENCE
 
 #### Expedia Group, London (Software Development Engineer III) (Jun 2021- Current)
-- Building gRPC applications using Scala that power the Incentives Platform, which is responsible for showing relevant and personalised deals and travel    ideas to customers. This platform is built using Scala, Cats, Cats-effect(Functional library), Cassandra, MongoDB, Elasticsearch and Spark.
-- Developing gPRC based applications using Functional programming with **Scala, Cat-effect, Protobuf, Kafka and MongoDB**
-- Developing Spark applications using **Scala**
-- Implemented drive app downloads by offering loyalty tier upgrades to new blue tier members use case using **Kotlin and Kafka stream**
+- Engineered **gRPC/GraphQL** full stack applications in **Scala/Kotlin/Java** with **Spring Boot** for the Personalisation Platform, leveraging AWS
+cloud services to enhance scalability and deliver personalized travel experiences.
+- Outlined technology stacks including **Kotlin/Java, Spring, gRPC, Arrow-Kt, Protobuf, Kafka, Cassandra, and Datadog** (Monitoring &
+Tracing) to ensure robust service performance.
+- Developed gRPC services in Scala for the Incentive Platform that boosted traveller engagement through efficient distributed
+microservices.
+- Utilized **Scala, Cats, Cats-effect, ZIO, Cassandra, MongoDB, Elasticsearch, and Spark to create data-driven solutions, aligning with
+modern cloud computing practices.**
+- Optimized service response time by reducing latency by 40% through the implementation of parallelized downstream service calls.
+- Constructed reactive streaming applications using Kotlin and Reactive Streams to support dynamic data flows in cloud-based
+environments.
+- Designed and developed **Spark and Flink** applications in Scala for large-scale data processing, integrating cloud computing approaches
+where applicable.
+- Architected and deployed a loyalty tier upgrade system using Kotlin and Kafka Streams, resulting in a 25% increase in app downloads
+within three months post-launch.
 
 #### Call Handling Services, London (Software Engineer) (Feb 2017- May 2021)
 - Designed and developed backend architecture of a reactive application
