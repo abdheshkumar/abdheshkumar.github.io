@@ -1,17 +1,17 @@
 **Expedia-SDE-III - Scala | Spark | Kafka | Kotlin at Expedia Group, London**
 
-####PROFILE SUMMARY
-- Over 12 years of strong IT industry experience as a Software Engineer
-- Designing and developing a cloud-based scalable reactive application with emphasis **Scala, Akka, Spark, Kafka, Kotlin, Spring, Java and ES6 - Javascript, ReactJS**
-- Strong experience of working on huge data sets using Big Data and Hadoop tools
+#### PROFILE SUMMARY
+Seasoned Software Engineer with over **12 years** of experience in designing and developing scalable, cloud-native microservices and big data applications. 
+Proficient in building high-performance systems using **Scala, Spark, and Kafka**, with deep expertise in reactive programming and distributed systems. At Expedia, led the development of **gRPC and GraphQL microservices in Kotlin and Java**, while delivering robust streaming solutions using Kafka, Reactor, and Kafka Streams. 
+Demonstrated strong command over modern architectures, including event sourcing, CQRS, and cloud-based deployments, with a proven track record of reducing system latency and improving throughput in mission-critical environments.
 
-####LANGUAGES AND TECHNOLOGIES
+#### LANGUAGES AND TECHNOLOGIES
 - **Programming Languages & Web Technologies:** **Scala**, Akka, **Cats/Cats-effect, Http4s, Circe, ZIO**, ES6-Javascript, **Java**, fs2, **Protobuf, gRPC**, pure-config.
 - **Big data:** Hadoop, **Spark**, MapReduce, Hive, Hbase, **Kafka**
 - **Tools/Frameworks & Cloud:**AWS**, Git, Jenkins, **Docker**, **Kubernetes**, Agile, Scrum, **Spring Boot**, Cloud Computing
 - **Databases:** Mysql, Hbase, **MongoDB**, Redis, **Cassandra**, Dgraph, **DynamoDB**
 
-####ACADEMIC QUALIFICATION
+#### ACADEMIC QUALIFICATION
 - **M.C.A**(Master of Computer Applications) from Dr. A.P.J. Abdul Kalam Technical University, India in 2011.
 - **B.Sc.(Maths)** from Dr. Bhimrao Ambedkar University, India in 2008.
 
