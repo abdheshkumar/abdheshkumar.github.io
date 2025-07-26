@@ -32,4 +32,4 @@ reify(for {
 
 #### Using IntelliJ IDEA
 
-![](img/for-comprehension.png "Scala For-comprehension")
+![](../img/for-comprehension.png "Scala For-comprehension")

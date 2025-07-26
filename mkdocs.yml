@@ -1,4 +1,6 @@
-site_name: Code, Learn, Repeat
+site_name: Learn, Code, Repeat
+site_description: Continuous learning and building in tech
+site_author: Abdhesh Kumar
 
 theme:
   name: material
@@ -66,6 +68,8 @@ extra:
       link: https://twitter.com/abdhesh_rkg
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/abdhesh
+extra_css:
+  - stylesheets/extra.css
 
 
 # Extensions
@@ -90,26 +94,33 @@ markdown_extensions:
 
 nav:
   - 'Abdhesh Kumar': 'index.md'
-  - 'Kafka':
-      - 'Kafka': 'kafka/index.md'
-      - 'Kafka Producer': 'kafka/kafka-producer.md'
-      - 'Kafka Consumer': 'kafka/kafka-consumer.md'
-      - 'Kafka Tuning': 'kafka/kafka-tuning.md'
   - 'Scala':
-      - 'Sbt testOnly': 'sbt-testonly.md'
-      - 'Methods with variable arguments': 'methods-with-variable-arguments.md'
-      - 'Pure/Total Functions': 'scala-pure-total-functions.md'
-      - 'Multiple ways of handling an exception in scala': 'multiple-ways-of-handling-an-exception-in-scala.md'
-      - 'When should you use Future, Future.successful and Future.failed': 'when-should-you-use-future-future-successful-future-failed.md'
-      - 'What is kleisli or composition of monadic functions in scala': 'what-is-kleisli-or-composition-of-monadic-functions-in-scala.md'
-      - 'For-Comprehension desugar': 'scala-for-comprehension-desugar.md'
-      - 'Final case class': 'final-case-class.md'
-  - 'Spark and Kafka':
-      - 'Spark why should we not use inferschema=true with-dataframe': 'spark-why-should-we-not-use-inferschema-true-with-dataframe.md'
-      - 'Easy and fast way of installing java scala and spark': 'easy-and-fast-way-of-installing-java-scala-and-spark.md'
-      - 'Easy scalable and fault tolerant structured streaming from kafka to spark': 'easy-scalable-and-fault-tolerant-structured-streaming-from-kafka-to-spark.md'
-      - 'Structured streaming kafka integration': 'structured-streaming-kafka-integration.md'
-      - 'Kafka stream testing': 'kafka-stream-testing.md'
+      - 'Sbt testOnly': 'scala/sbt-testonly.md'
+      - 'Methods with variable arguments': 'scala/methods-with-variable-arguments.md'
+      - 'Pure/Total Functions': 'scala/scala-pure-total-functions.md'
+      - 'Multiple ways of handling an exception in scala': 'scala/multiple-ways-of-handling-an-exception-in-scala.md'
+      - 'When should you use Future, Future.successful and Future.failed': 'scala/when-should-you-use-future-future-successful-future-failed.md'
+      - 'What is kleisli or composition of monadic functions in scala': 'scala/what-is-kleisli-or-composition-of-monadic-functions-in-scala.md'
+      - 'For-Comprehension desugar': 'scala/scala-for-comprehension-desugar.md'
+      - 'Final case class': 'scala/final-case-class.md'
+  - 'Kotlin':
+      - 'Introduction': 'kotlin/index.md'
+  - 'Java':
+      - 'Introduction': 'java/index.md'
+  - 'Spark, Kafka and Big Data':
+      - 'Spark':
+        - 'Spark why should we not use inferschema=true with-dataframe': 'spark/spark-why-should-we-not-use-inferschema-true-with-dataframe.md'
+        - 'Easy and fast way of installing java scala and spark': 'spark/easy-and-fast-way-of-installing-java-scala-and-spark.md'
+        - 'Easy scalable and fault tolerant structured streaming from kafka to spark': 'spark/easy-scalable-and-fault-tolerant-structured-streaming-from-kafka-to-spark.md'
+        - 'Structured streaming kafka integration': 'spark/structured-streaming-kafka-integration.md'
+      - 'Kafka':
+          - 'Kafka': 'kafka/index.md'
+          - 'Kafka Producer': 'kafka/kafka-producer.md'
+          - 'Kafka Consumer': 'kafka/kafka-consumer.md'
+          - 'Kafka Tuning': 'kafka/kafka-tuning.md'
+          - 'Kafka stream testing': 'kafka/kafka-stream-testing.md'
+      - 'Flink':
+          - 'Introduction': 'flink/index.md'
 
 plugins:
   - blog
