@@ -1,4 +1,5 @@
-**Expedia-SDE-III - Scala | Spark | Kafka | Kotlin at Expedia Group, London**
+# Abdhesh Kumar
+**Software Development Engineer III at Expedia Group - Scala | Spark | Kafka | Kotlin**
 
 #### PROFILE SUMMARY
 - Seasoned Software Engineer with over **12 years** of experience in designing and developing scalable, cloud-native microservices and big data applications. 
@@ -9,7 +10,7 @@
 #### LANGUAGES AND TECHNOLOGIES
 - **Programming Languages & Web Technologies:** **Scala**, Akka, **Cats/Cats-effect, Http4s, Circe, ZIO**, ES6-Javascript, **Java**, fs2, **Protobuf, gRPC**, pure-config.
 - **Big data:** Hadoop, **Spark**, MapReduce, Hive, Hbase, **Kafka**
-- **Tools/Frameworks & Cloud:**AWS**, Git, Jenkins, **Docker**, **Kubernetes**, Agile, Scrum, **Spring Boot**, Cloud Computing
+- **Tools/Frameworks & Cloud:** **AWS**, Git, Jenkins, **Docker**, **Kubernetes**, Agile, Scrum, **Spring Boot**, Cloud Computing
 - **Databases:** Mysql, Hbase, **MongoDB**, Redis, **Cassandra**, Dgraph, **DynamoDB**
 
 #### ACADEMIC QUALIFICATION
@@ -60,7 +61,7 @@ within three months post-launch.
 - Designed and developed a website using Php and WordPress
 - Developed websites using Html/CSS/JQuery/JavaScript
 
-####CERTIFICATIONS
+#### CERTIFICATIONS
 - [Big Data Analysis with Scala and Spark](http://coursera.org/verify/V5LC2D2Z8XPZ){:target="_blank"} issued by EPFL (École polytechnique fédérale de Lausanne)
 - [Simplifying data pipelines with Apache Kafka](https://courses.cognitiveclass.ai/certificates/a603089d9e1240c1abfc833c2c6eeacd){:target="_blank"} issued by IBM's Big Data University
 - [Functional Programming Principles in Scala](pdf/Functional Programming Principles in Scala.pdf){:target="_blank"} issued by Coursera
@@ -70,7 +71,7 @@ within three months post-launch.
 - [Reactive Architecture: CQRS and Event Sourcing - Level 2](https://www.credly.com/badges/99ad83f1-3403-472e-a09c-b3194c9e3ca4/linked_in_profile){:target="_blank"} issued by Lightbend, Inc.
 - [S201: Data Modeling and Application Development](img/Abdhesh-Kumar-S201-Data-Modeling-and-Application-Development-Data-Modeling-Course-Completion-Certificate-ScyllaDB-University.pdf){:target="_blank"} issued by ScyllaDB University.
 
-####Contact Info
+#### CONTACT INFO
 - Email: abdhesh.mca@gmail.com
 - [GitHub Profile](https://github.com/abdheshkumar){:target="_blank"}
 - [Linkedin Profile](https://www.linkedin.com/in/abdhesh/){:target="_blank"}

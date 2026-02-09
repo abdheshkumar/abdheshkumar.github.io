@@ -30,13 +30,13 @@ theme:
     # - content.tabs.link
     - content.tooltips
     # - header.autohide
-    # - navigation.expand
     - navigation.footer
     - navigation.indexes
     # - navigation.instant
     # - navigation.prune
     - navigation.sections
     - navigation.tabs
+    - navigation.expand
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
@@ -76,6 +76,8 @@ extra_css:
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences:
@@ -84,6 +86,7 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - admonition
+  - footnotes
   - pymdownx.details
   - pymdownx.mark
   - pymdownx.tabbed:
@@ -110,7 +113,7 @@ nav:
       - 'For-Comprehension desugar': 'scala/scala-for-comprehension-desugar.md'
       - 'Final case class': 'scala/final-case-class.md'
   - 'Kotlin':
-      - 'Introduction': 'kotlin/index.md'
+      - 'Scope Functions': 'kotlin/index.md'
   - 'Java':
       - 'Introduction': 'java/index.md'
   - 'Spark, Kafka and Big Data':
@@ -127,9 +130,15 @@ nav:
           - 'Kafka stream testing': 'kafka/kafka-stream-testing.md'
       - 'Flink':
           - 'Introduction': 'flink/index.md'
+  - 'Claude Code':
+      - "Beginner's Guide": 'claude/claude-code-explained.md'
+      - 'How Claude Knows Things': 'claude/how-claude-knows.md'
+      - 'MCP Guide': 'claude/mcp-guide.md'
+      - 'Architecture': 'claude/claude-code-architecture.md'
 
 plugins:
   - blog
+  - search
 
 copyright: |
   &copy; 2023 <a href="https://github.com/abdheshkumar"  target="_blank" rel="noopener">Abdhesh Kumar</a>

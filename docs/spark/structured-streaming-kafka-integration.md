@@ -7,7 +7,7 @@ end-to-end failure guarantees.**
 //Step-1 Creating a Kafka Source for Streaming Queries
 val rawData = spark.readStream
   .format("kafka")
-  .option("kafka.boostrap.servers", "")
+  .option("kafka.bootstrap.servers", "")
   .option("subscribe", "topic")
   .load()
 
