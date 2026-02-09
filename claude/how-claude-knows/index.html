@@ -1,0 +1,3621 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Continuous learning and building in tech">
+      
+      
+        <meta name="author" content="Abdhesh Kumar">
+      
+      
+      
+        <link rel="prev" href="../claude-code-explained/">
+      
+      
+        <link rel="next" href="../mcp-guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>How Claude Knows Things - Learn, Code, Repeat</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-does-claude-code-know-everything" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Learn, Code, Repeat" class="md-header__button md-logo" aria-label="Learn, Code, Repeat" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89">
+  <path d="M3.136,17.387l0,42.932l42.932,21.467l-42.932,-64.399Z" />
+  <path d="M21.91,8l42.933,64.398l-18.775,9.388l-42.932,-64.399l18.774,-9.387Z" style="fill-opacity: 0.5" />
+  <path d="M67.535,17.387l-27.262,18.156l21.878,32.818l5.384,2.691l0,-53.665Z" />
+  <path d="M67.535,17.387l0,53.666l18.774,-9.388l0,-53.665l-18.774,9.387Z" style="fill-opacity: 0.25" />
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Learn, Code, Repeat
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How Claude Knows Things
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Abdhesh Kumar
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../scala/sbt-testonly/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Scala
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kotlin/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Kotlin
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../java/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../spark/spark-why-should-we-not-use-inferschema-true-with-dataframe/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Spark, Kafka and Big Data
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../claude-code-explained/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Claude Code
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Learn, Code, Repeat" class="md-nav__button md-logo" aria-label="Learn, Code, Repeat" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89">
+  <path d="M3.136,17.387l0,42.932l42.932,21.467l-42.932,-64.399Z" />
+  <path d="M21.91,8l42.933,64.398l-18.775,9.388l-42.932,-64.399l18.774,-9.387Z" style="fill-opacity: 0.5" />
+  <path d="M67.535,17.387l-27.262,18.156l21.878,32.818l5.384,2.691l0,-53.665Z" />
+  <path d="M67.535,17.387l0,53.666l18.774,-9.388l0,-53.665l-18.774,9.387Z" style="fill-opacity: 0.25" />
+</svg>
+
+    </a>
+    Learn, Code, Repeat
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abdhesh Kumar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scala
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Scala
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/sbt-testonly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sbt testOnly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/methods-with-variable-arguments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methods with variable arguments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/scala-pure-total-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pure/Total Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/multiple-ways-of-handling-an-exception-in-scala/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple ways of handling an exception in scala
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/when-should-you-use-future-future-successful-future-failed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    When should you use Future, Future.successful and Future.failed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/what-is-kleisli-or-composition-of-monadic-functions-in-scala/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is kleisli or composition of monadic functions in scala
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/scala-for-comprehension-desugar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For-Comprehension desugar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/final-case-class/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final case class
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../kotlin/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kotlin
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Kotlin
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../java/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark, Kafka and Big Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spark, Kafka and Big Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spark
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spark/spark-why-should-we-not-use-inferschema-true-with-dataframe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark why should we not use inferschema=true with-dataframe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spark/easy-and-fast-way-of-installing-java-scala-and-spark/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Easy and fast way of installing java scala and spark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spark/easy-scalable-and-fault-tolerant-structured-streaming-from-kafka-to-spark/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Easy scalable and fault tolerant structured streaming from kafka to spark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spark/structured-streaming-kafka-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structured streaming kafka integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../kafka/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kafka
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Kafka
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kafka/kafka-producer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kafka Producer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kafka/kafka-consumer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kafka Consumer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kafka/kafka-tuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kafka Tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kafka/kafka-stream-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kafka stream testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../flink/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flink
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flink
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Claude Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../claude-code-explained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beginner's Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Claude Knows Things
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Claude Knows Things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Big Picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-training-knowledge-what-i-learned-before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Training Knowledge - What I Learned Before
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Training Knowledge - What I Learned Before">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-i-was-trained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How I Was Trained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-i-know-from-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I Know From Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-i-dont-know-from-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I DON'T Know From Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-session-context-what-i-see-right-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Session Context - What I See Right Now
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Session Context - What I See Right Now">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-goes-into-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Goes Into Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-context-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Context Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-how-i-learn-about-your-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: How I Learn About Your Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-real-time-tools-how-i-access-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Real-Time Tools - How I Access Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Real-Time Tools - How I Access Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#my-toolbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        My Toolbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-i-use-tools-to-know-things" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How I Use Tools to "Know" Things
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How I Use Tools to &#34;Know&#34; Things">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-finding-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Finding Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-learning-your-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Learning Your Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-getting-latest-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Getting Latest Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-extensions-add-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How Extensions Add Knowledge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. How Extensions Add Knowledge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#knowledge-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowledge Layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-answering-a-complex-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Answering a Complex Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-i-actually-know-vs-can-find-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What I Actually "Know" vs. Can "Find Out"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. What I Actually &#34;Know&#34; vs. Can &#34;Find Out&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#things-i-actually-know-in-my-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things I Actually Know (In My Training)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#things-i-can-find-out-using-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things I Can Find Out (Using Tools)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#things-i-dont-know-and-cant-find" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things I Don't Know and Can't Find
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-the-complete-information-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. The Complete Information Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Real-World Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Real-World Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-simple-question-pure-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Simple Question (Pure Training)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-project-specific-question-need-to-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Project-Specific Question (Need to Search)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-company-specific-question-need-skill-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Company-Specific Question (Need Skill + MCP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-my-limitations-being-honest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. My Limitations (Being Honest!)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. My Limitations (Being Honest!)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-im-good-at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I'm Good At
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-im-not-good-at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I'm Not Good At
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Misconceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-how-to-help-me-know-what-you-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. How to Help Me Know What You Need
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. How to Help Me Know What You Need">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#be-explicit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Be Explicit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provide Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-project-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Project Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-truth-about-my-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Truth About My Knowledge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#im-most-effective-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I'm Most Effective When:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-struggle-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I Struggle When:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thought" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Thought
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-to-reflect-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questions to Reflect On
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../claude-code-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Big Picture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-training-knowledge-what-i-learned-before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Training Knowledge - What I Learned Before
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Training Knowledge - What I Learned Before">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-i-was-trained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How I Was Trained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-i-know-from-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I Know From Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-i-dont-know-from-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I DON'T Know From Training
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-session-context-what-i-see-right-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Session Context - What I See Right Now
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Session Context - What I See Right Now">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-goes-into-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Goes Into Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-context-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Context Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-how-i-learn-about-your-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: How I Learn About Your Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-real-time-tools-how-i-access-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Real-Time Tools - How I Access Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Real-Time Tools - How I Access Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#my-toolbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        My Toolbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-i-use-tools-to-know-things" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How I Use Tools to "Know" Things
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How I Use Tools to &#34;Know&#34; Things">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-finding-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Finding Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-learning-your-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Learning Your Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-getting-latest-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Getting Latest Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-extensions-add-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How Extensions Add Knowledge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. How Extensions Add Knowledge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#knowledge-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowledge Layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-answering-a-complex-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Answering a Complex Question
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-i-actually-know-vs-can-find-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What I Actually "Know" vs. Can "Find Out"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. What I Actually &#34;Know&#34; vs. Can &#34;Find Out&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#things-i-actually-know-in-my-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things I Actually Know (In My Training)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#things-i-can-find-out-using-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things I Can Find Out (Using Tools)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#things-i-dont-know-and-cant-find" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Things I Don't Know and Can't Find
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-the-complete-information-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. The Complete Information Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Real-World Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Real-World Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-simple-question-pure-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Simple Question (Pure Training)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-project-specific-question-need-to-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Project-Specific Question (Need to Search)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-company-specific-question-need-skill-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Company-Specific Question (Need Skill + MCP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-my-limitations-being-honest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. My Limitations (Being Honest!)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. My Limitations (Being Honest!)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-im-good-at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I'm Good At
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-im-not-good-at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I'm Not Good At
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Misconceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-how-to-help-me-know-what-you-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. How to Help Me Know What You Need
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. How to Help Me Know What You Need">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#be-explicit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Be Explicit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provide Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-project-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Project Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-truth-about-my-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Truth About My Knowledge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#im-most-effective-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I'm Most Effective When:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-struggle-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I Struggle When:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-thought" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Thought
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-to-reflect-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questions to Reflect On
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="how-does-claude-code-know-everything">How Does Claude Code Know Everything?</h1>
+<p><strong>Short answer:</strong> I don't! But let me explain how my knowledge actually works.</p>
+<h2 id="the-big-picture">The Big Picture</h2>
+<pre class="mermaid"><code>graph TB
+    subgraph TRAINING["1. Training Knowledge"]
+        T1[📚 Books, articles, documentation&lt;br/&gt;up to January 2025]
+        T2[💻 Code from open source&lt;br/&gt;programming patterns]
+        T3[🌐 Public internet content&lt;br/&gt;General knowledge]
+    end
+
+    subgraph CONTEXT["2. Session Context"]
+        C1[💬 Your conversation&lt;br/&gt;What you tell me]
+        C2[📄 Files I read&lt;br/&gt;Your project code]
+        C3[📋 CLAUDE.md&lt;br/&gt;Project instructions]
+        C4[📚 Loaded skills&lt;br/&gt;Domain knowledge]
+    end
+
+    subgraph TOOLS["3. Real-Time Tools"]
+        TO1[🔍 Search your codebase&lt;br/&gt;Grep, Glob]
+        TO2[📖 Read any file&lt;br/&gt;Read tool]
+        TO3[🌐 Browse the web&lt;br/&gt;WebFetch]
+        TO4[🔌 Query external services&lt;br/&gt;MCP servers]
+    end
+
+    CLAUDE[🤖 Claude Code]
+
+    TRAINING --&gt;|Built into my brain| CLAUDE
+    CONTEXT --&gt;|Current session| CLAUDE
+    TOOLS --&gt;|I can use to find info| CLAUDE
+
+    style CLAUDE fill:#c8e6c9
+    style TRAINING fill:#bbdefb
+    style CONTEXT fill:#fff9c4
+    style TOOLS fill:#ffab91</code></pre>
+<p>Let me break down each source of "knowledge"...</p>
+<hr />
+<h2 id="1-training-knowledge-what-i-learned-before">1. Training Knowledge - What I Learned Before</h2>
+<h3 id="how-i-was-trained">How I Was Trained</h3>
+<p>I'm an AI model (Claude Sonnet 4.5) trained on a massive dataset. Think of it like going to school for years.</p>
+<pre class="mermaid"><code>graph LR
+    subgraph TRAINING_DATA["Training Data"]
+        D1[📚 Books &amp; Articles]
+        D2[💻 Open Source Code&lt;br/&gt;GitHub, Stack Overflow]
+        D3[🌐 Websites &amp; Docs]
+        D4[📰 News &amp; Information]
+    end
+
+    TRAINING_DATA --&gt;|Trained on| NEURAL[🧠 Neural Network&lt;br/&gt;175B+ parameters]
+    NEURAL --&gt;|Becomes| CLAUDE[🤖 Claude Model]
+
+    NOTE[⚠️ Knowledge cutoff:&lt;br/&gt;January 2025]
+
+    style TRAINING_DATA fill:#bbdefb
+    style NEURAL fill:#ce93d8
+    style CLAUDE fill:#c8e6c9
+    style NOTE fill:#ffab91</code></pre>
+<h3 id="what-i-know-from-training">What I Know From Training</h3>
+<p><strong>Programming Languages:</strong>
+- Syntax, patterns, best practices
+- Common libraries and frameworks
+- Design patterns and algorithms</p>
+<p><strong>Example:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>You: &quot;How do I sort an array in JavaScript?&quot;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Me: *From training* &quot;You can use .sort() method...&quot;
+</span></code></pre></div></p>
+<p><strong>General Knowledge:</strong>
+- History, science, math
+- Technology concepts
+- Common facts and information</p>
+<p><strong>Example:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>You: &quot;What is REST API?&quot;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Me: *From training* &quot;REST stands for Representational State Transfer...&quot;
+</span></code></pre></div></p>
+<h3 id="what-i-dont-know-from-training">What I DON'T Know From Training</h3>
+<pre class="mermaid"><code>graph TB
+    DONT[❌ Things I DON'T Know]
+
+    DONT --&gt; N1[🔴 Your project's code&lt;br/&gt;I haven't seen it yet]
+    DONT --&gt; N2[🔴 Internal company systems&lt;br/&gt;Not in public training data]
+    DONT --&gt; N3[🔴 Recent events after Jan 2025&lt;br/&gt;Knowledge cutoff]
+    DONT --&gt; N4[🔴 Your specific requirements&lt;br/&gt;You haven't told me]
+    DONT --&gt; N5[🔴 Private APIs/services&lt;br/&gt;Not publicly documented]
+
+    style DONT fill:#ffcdd2
+    style N1 fill:#ffcdd2
+    style N2 fill:#ffcdd2
+    style N3 fill:#ffcdd2
+    style N4 fill:#ffcdd2
+    style N5 fill:#ffcdd2</code></pre>
+<p><strong>Important:</strong> My training knowledge is <strong>frozen at January 2025</strong>. I don't know about:
+- Events after January 2025
+- New libraries released after that
+- Your company's internal systems
+- Your project's specific code (until I read it)</p>
+<hr />
+<h2 id="2-session-context-what-i-see-right-now">2. Session Context - What I See Right Now</h2>
+<p>Every time you talk to me, I have a "context window" - like short-term memory for our conversation.</p>
+<h3 id="what-goes-into-context">What Goes Into Context</h3>
+<pre class="mermaid"><code>graph TB
+    CONTEXT[📦 Context Window&lt;br/&gt;My Current Memory]
+
+    CONTEXT --&gt; C1[💬 Conversation History&lt;br/&gt;Everything you and I said]
+    CONTEXT --&gt; C2[📄 Files I've Read&lt;br/&gt;Code you asked me to read]
+    CONTEXT --&gt; C3[📋 CLAUDE.md&lt;br/&gt;Project instructions]
+    CONTEXT --&gt; C4[📚 Loaded Skills&lt;br/&gt;Domain-specific knowledge]
+    CONTEXT --&gt; C5[⚙️ System Instructions&lt;br/&gt;How Claude Code works]
+    CONTEXT --&gt; C6[🔧 Available Tools&lt;br/&gt;What I can do]
+    CONTEXT --&gt; C7[🗄️ Git Status&lt;br/&gt;Current branch, changes]
+
+    style CONTEXT fill:#fff9c4
+    style C1 fill:#e1f5ff
+    style C2 fill:#e1f5ff
+    style C3 fill:#e1f5ff
+    style C4 fill:#e1f5ff
+    style C5 fill:#e1f5ff
+    style C6 fill:#e1f5ff
+    style C7 fill:#e1f5ff</code></pre>
+<h3 id="how-context-works">How Context Works</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant You
+    participant Context
+    participant Claude
+
+    Note over Context: Empty at start
+
+    You-&gt;&gt;Context: "I'm building a React app"
+    Context-&gt;&gt;Claude: Processes with training knowledge
+
+    Claude-&gt;&gt;You: "Great! What can I help with?"
+
+    You-&gt;&gt;Context: "Read src/App.js"
+    Note over Context: Claude uses Read tool
+    Context-&gt;&gt;Context: Adds file content
+
+    You-&gt;&gt;Context: "Fix the bug in the handleClick"
+    Context-&gt;&gt;Claude: Processes with:&lt;br/&gt;• Training (React knowledge)&lt;br/&gt;• Context (App.js code)&lt;br/&gt;• Context (previous messages)
+
+    Claude-&gt;&gt;You: "I see the issue on line 42..."
+    Note over Context: My response also added to context</code></pre>
+<h3 id="example-how-i-learn-about-your-project">Example: How I Learn About Your Project</h3>
+<p><strong>Turn 1:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>You: &quot;I have a Node.js project&quot;
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Context: &quot;User has Node.js project&quot;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>My Knowledge: General Node.js (from training) + Your statement (from context)
+</span></code></pre></div></p>
+<p><strong>Turn 2:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>You: &quot;Read package.json&quot;
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>*I use Read tool*
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Context: &quot;User has Node.js project&quot; + &quot;package.json contents&quot;
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>My Knowledge: Now I know your dependencies, scripts, etc.
+</span></code></pre></div></p>
+<p><strong>Turn 3:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>You: &quot;Fix the authentication bug&quot;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Context: All of the above + &quot;User wants auth bug fixed&quot;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>My Knowledge: General auth patterns (training) + Your specific code (context)
+</span></code></pre></div></p>
+<h3 id="context-limitations">Context Limitations</h3>
+<pre class="mermaid"><code>graph TB
+    LIMIT[⚠️ Context Window Limits]
+
+    LIMIT --&gt; L1[📏 Size Limit&lt;br/&gt;~200K tokens&lt;br/&gt;≈ 150K words]
+    LIMIT --&gt; L2[⏱️ Time Limit&lt;br/&gt;Only this session&lt;br/&gt;Resets on restart]
+    LIMIT --&gt; L3[🧹 Auto-Summarization&lt;br/&gt;Old messages summarized&lt;br/&gt;to save space]
+
+    style LIMIT fill:#fff9c4
+    style L1 fill:#ffab91
+    style L2 fill:#ffab91
+    style L3 fill:#ffab91</code></pre>
+<p><strong>What this means:</strong>
+- If we talk a LOT, old messages get summarized
+- If I read MANY files, context fills up
+- Each session starts fresh (but CLAUDE.md loads again)</p>
+<hr />
+<h2 id="3-real-time-tools-how-i-access-information">3. Real-Time Tools - How I Access Information</h2>
+<p>I can actively look up information using tools!</p>
+<h3 id="my-toolbox">My Toolbox</h3>
+<pre class="mermaid"><code>graph TB
+    TOOLS[🛠️ My Tools]
+
+    subgraph SEARCH[Search Tools]
+        S1[🔍 Grep&lt;br/&gt;Search file contents]
+        S2[📁 Glob&lt;br/&gt;Find files by pattern]
+    end
+
+    subgraph FILE[File Tools]
+        F1[📖 Read&lt;br/&gt;Read any file]
+        F2[✏️ Edit&lt;br/&gt;Modify files]
+        F3[📝 Write&lt;br/&gt;Create files]
+    end
+
+    subgraph EXECUTE[Execution Tools]
+        E1[⚡ Bash&lt;br/&gt;Run commands]
+        E2[🐙 Git&lt;br/&gt;Version control]
+    end
+
+    subgraph EXTERNAL[External Tools]
+        EX1[🌐 WebFetch&lt;br/&gt;Browse websites]
+        EX2[🔌 MCP&lt;br/&gt;External services]
+    end
+
+    subgraph META[Meta Tools]
+        M1[🤖 Task&lt;br/&gt;Spawn subagents]
+        M2[❓ AskUserQuestion&lt;br/&gt;Ask you questions]
+    end
+
+    TOOLS --&gt; SEARCH
+    TOOLS --&gt; FILE
+    TOOLS --&gt; EXECUTE
+    TOOLS --&gt; EXTERNAL
+    TOOLS --&gt; META
+
+    style TOOLS fill:#c8e6c9</code></pre>
+<h3 id="how-i-use-tools-to-know-things">How I Use Tools to "Know" Things</h3>
+<h4 id="example-1-finding-information">Example 1: Finding Information</h4>
+<pre class="mermaid"><code>sequenceDiagram
+    participant You
+    participant Claude
+    participant Grep Tool
+    participant Files
+
+    You-&gt;&gt;Claude: "Where is the authentication code?"
+
+    Note over Claude: I DON'T know this from training&lt;br/&gt;or context - I need to search!
+
+    Claude-&gt;&gt;Grep Tool: Search for "authentication"
+    Grep Tool-&gt;&gt;Files: Searches all files
+    Files-&gt;&gt;Grep Tool: Found in: src/auth.js, utils/auth.ts
+    Grep Tool-&gt;&gt;Claude: Returns file paths
+
+    Claude-&gt;&gt;You: "Authentication code is in:&lt;br/&gt;• src/auth.js&lt;br/&gt;• utils/auth.ts"
+
+    Note over Claude: Now I "know" where it is!</code></pre>
+<h4 id="example-2-learning-your-code">Example 2: Learning Your Code</h4>
+<pre class="mermaid"><code>sequenceDiagram
+    participant You
+    participant Claude
+    participant Read Tool
+    participant File
+
+    You-&gt;&gt;Claude: "How does user login work?"
+
+    Note over Claude: Training: General auth patterns&lt;br/&gt;Context: Nothing specific yet&lt;br/&gt;Need to read code!
+
+    Claude-&gt;&gt;Read Tool: Read src/auth.js
+    Read Tool-&gt;&gt;File: Reads file
+    File-&gt;&gt;Read Tool: Returns content
+    Read Tool-&gt;&gt;Claude: Adds to context
+
+    Note over Claude: Now I have:&lt;br/&gt;• General auth knowledge (training)&lt;br/&gt;• Your specific implementation (context)
+
+    Claude-&gt;&gt;You: "Your login uses JWT tokens,&lt;br/&gt;stored in localStorage,&lt;br/&gt;validated on line 45..."</code></pre>
+<h4 id="example-3-getting-latest-info">Example 3: Getting Latest Info</h4>
+<pre class="mermaid"><code>sequenceDiagram
+    participant You
+    participant Claude
+    participant WebFetch
+    participant Internet
+
+    You-&gt;&gt;Claude: "What's the latest React version?"
+
+    Note over Claude: Training cutoff: Jan 2025&lt;br/&gt;I might not know if newer!
+
+    Claude-&gt;&gt;WebFetch: Fetch reactjs.org
+    WebFetch-&gt;&gt;Internet: HTTP request
+    Internet-&gt;&gt;WebFetch: HTML content
+    WebFetch-&gt;&gt;Claude: Page content
+
+    Claude-&gt;&gt;You: "The latest React version is 19.1.2"
+
+    Note over Claude: Used web to get current info!</code></pre>
+<hr />
+<h2 id="4-how-extensions-add-knowledge">4. How Extensions Add Knowledge</h2>
+<p>Extensions like CLAUDE.md, Skills, and MCP augment what I know.</p>
+<h3 id="knowledge-layers">Knowledge Layers</h3>
+<pre class="mermaid"><code>graph TB
+    subgraph LAYER1[Base Layer - Always Present]
+        BASE[🧠 Training Knowledge&lt;br/&gt;General programming, concepts]
+    end
+
+    subgraph LAYER2[Project Layer - Session Start]
+        PROJ[📋 CLAUDE.md&lt;br/&gt;Project-specific rules]
+    end
+
+    subgraph LAYER3[Domain Layer - On Demand]
+        DOM[📚 Skills&lt;br/&gt;Specialized knowledge]
+    end
+
+    subgraph LAYER4[External Layer - Live Access]
+        EXT[🔌 MCP Servers&lt;br/&gt;External data sources]
+    end
+
+    BASE --&gt; PROJ
+    PROJ --&gt; DOM
+    DOM --&gt; EXT
+
+    EXT --&gt; FINAL[🤖 Complete Knowledge&lt;br/&gt;for answering your question]
+
+    style BASE fill:#bbdefb
+    style PROJ fill:#fff9c4
+    style DOM fill:#ce93d8
+    style EXT fill:#ffab91
+    style FINAL fill:#c8e6c9</code></pre>
+<h3 id="example-answering-a-complex-question">Example: Answering a Complex Question</h3>
+<p><strong>Question:</strong> "How do I deploy using egctl to the production environment?"</p>
+<pre class="mermaid"><code>graph TB
+    Q[❓ Question:&lt;br/&gt;Deploy with egctl to prod]
+
+    Q --&gt; K1{Do I know&lt;br/&gt;what egctl is?}
+    K1 --&gt;|No, not in training| SKILL[📚 Load egctl skill]
+    SKILL --&gt; K1
+
+    K1 --&gt;|Now yes!| K2{Do I know&lt;br/&gt;project specifics?}
+    K2 --&gt;|Check CLAUDE.md| CM[📋 CLAUDE.md says:&lt;br/&gt;Use pnpm, test first]
+
+    K2 --&gt; K3{Do I know&lt;br/&gt;current state?}
+    K3 --&gt; READ[📖 Read deployment config]
+
+    READ --&gt; K4{Do I need&lt;br/&gt;external data?}
+    K4 --&gt;|Yes| MCP[🔌 MCP: Check cluster status]
+
+    MCP --&gt; ANSWER[✅ Complete Answer:&lt;br/&gt;• Training: General deployment&lt;br/&gt;• Skill: egctl specifics&lt;br/&gt;• CLAUDE.md: Project rules&lt;br/&gt;• Files: Your config&lt;br/&gt;• MCP: Current cluster state]
+
+    style Q fill:#e1f5ff
+    style SKILL fill:#ce93d8
+    style CM fill:#fff9c4
+    style READ fill:#ffab91
+    style MCP fill:#ffab91
+    style ANSWER fill:#c8e6c9</code></pre>
+<hr />
+<h2 id="5-what-i-actually-know-vs-can-find-out">5. What I Actually "Know" vs. Can "Find Out"</h2>
+<p>Let me be honest about the difference:</p>
+<h3 id="things-i-actually-know-in-my-training">Things I Actually Know (In My Training)</h3>
+<pre class="mermaid"><code>graph LR
+    subgraph KNOW[✅ I Actually Know These]
+        K1[Programming languages&lt;br/&gt;syntax &amp; patterns]
+        K2[Algorithms &amp;&lt;br/&gt;data structures]
+        K3[Common frameworks&lt;br/&gt;React, Node.js, etc.]
+        K4[General concepts&lt;br/&gt;REST, databases, etc.]
+        K5[Public documentation&lt;br/&gt;that existed before Jan 2025]
+    end
+
+    style KNOW fill:#c8e6c9</code></pre>
+<p><strong>Example:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>You: &quot;How do I reverse an array in JavaScript?&quot;
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Me: *Instantly from training* &quot;Use .reverse() or [...arr].reverse()&quot;
+</span></code></pre></div></p>
+<h3 id="things-i-can-find-out-using-tools">Things I Can Find Out (Using Tools)</h3>
+<pre class="mermaid"><code>graph LR
+    subgraph FIND[🔍 I Can Find These Out]
+        F1[Your project's code&lt;br/&gt;*use Read tool*]
+        F2[Where something is&lt;br/&gt;*use Grep/Glob*]
+        F3[Current state&lt;br/&gt;*run commands*]
+        F4[Latest documentation&lt;br/&gt;*use WebFetch*]
+        F5[External data&lt;br/&gt;*use MCP*]
+    end
+
+    style FIND fill:#bbdefb</code></pre>
+<p><strong>Example:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>You: &quot;Where is the user authentication logic?&quot;
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Me: *Needs to search* &quot;Let me search your codebase...&quot;
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    *Uses Grep tool*
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    &quot;Found in src/auth/UserAuth.ts&quot;
+</span></code></pre></div></p>
+<h3 id="things-i-dont-know-and-cant-find">Things I Don't Know and Can't Find</h3>
+<pre class="mermaid"><code>graph LR
+    subgraph CANT[❌ I Cannot Know These]
+        C1[What you're thinking&lt;br/&gt;*You need to tell me*]
+        C2[Internal company secrets&lt;br/&gt;*Not in training or accessible*]
+        C3[Passwords/credentials&lt;br/&gt;*Never stored or accessible*]
+        C4[Your future plans&lt;br/&gt;*You need to tell me*]
+        C5[Proprietary systems&lt;br/&gt;*Without MCP server*]
+    end
+
+    style CANT fill:#ffcdd2</code></pre>
+<hr />
+<h2 id="6-the-complete-information-flow">6. The Complete Information Flow</h2>
+<p>Here's how I answer any question:</p>
+<pre class="mermaid"><code>graph TB
+    START[You ask a question]
+
+    START --&gt; CHECK1{Is it general&lt;br/&gt;programming?}
+    CHECK1 --&gt;|Yes| TRAINING[✅ Answer from training&lt;br/&gt;Quick response]
+
+    CHECK1 --&gt;|No| CHECK2{Is it in&lt;br/&gt;CLAUDE.md?}
+    CHECK2 --&gt;|Yes| CLAUDEMD[✅ Use CLAUDE.md rules]
+
+    CHECK2 --&gt;|No| CHECK3{Is there a&lt;br/&gt;relevant skill?}
+    CHECK3 --&gt;|Yes| SKILL[✅ Load skill]
+
+    CHECK3 --&gt;|No| CHECK4{Is it about&lt;br/&gt;your code?}
+    CHECK4 --&gt;|Yes| READ[🔍 Search/Read files]
+
+    CHECK4 --&gt;|No| CHECK5{Is it external&lt;br/&gt;information?}
+    CHECK5 --&gt;|Yes - web| WEB[🌐 Use WebFetch]
+    CHECK5 --&gt;|Yes - service| MCP[🔌 Use MCP]
+
+    CHECK5 --&gt;|No| ASK[❓ Ask you for clarification]
+
+    TRAINING --&gt; ANSWER
+    CLAUDEMD --&gt; ANSWER
+    SKILL --&gt; ANSWER
+    READ --&gt; ANSWER
+    WEB --&gt; ANSWER
+    MCP --&gt; ANSWER
+    ASK --&gt; ANSWER[📝 Provide answer]
+
+    style START fill:#e1f5ff
+    style ANSWER fill:#c8e6c9
+    style TRAINING fill:#bbdefb
+    style CLAUDEMD fill:#fff9c4
+    style SKILL fill:#ce93d8
+    style READ fill:#ffab91
+    style WEB fill:#ffab91
+    style MCP fill:#ffab91
+    style ASK fill:#fff59d</code></pre>
+<hr />
+<h2 id="7-real-world-examples">7. Real-World Examples</h2>
+<h3 id="example-1-simple-question-pure-training">Example 1: Simple Question (Pure Training)</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant You
+    participant Training
+    participant Claude
+
+    You-&gt;&gt;Claude: "How do I sort an array in Python?"
+
+    Note over Claude: This is general Python knowledge
+
+    Claude-&gt;&gt;Training: Recall from training
+    Training-&gt;&gt;Claude: "Use .sort() or sorted()"
+
+    Claude-&gt;&gt;You: "Use arr.sort() for in-place&lt;br/&gt;or sorted(arr) for a new list"
+
+    Note over Claude: No tools needed!&lt;br/&gt;Instant answer from training</code></pre>
+<h3 id="example-2-project-specific-question-need-to-search">Example 2: Project-Specific Question (Need to Search)</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant You
+    participant Claude
+    participant Grep
+    participant Read
+    participant Files
+
+    You-&gt;&gt;Claude: "Where do we validate user emails?"
+
+    Note over Claude: Not in training or context&lt;br/&gt;Need to search!
+
+    Claude-&gt;&gt;Grep: Search for "email" and "validation"
+    Grep-&gt;&gt;Files: Searches codebase
+    Files-&gt;&gt;Grep: Found in: validators/email.js
+    Grep-&gt;&gt;Claude: Results
+
+    Claude-&gt;&gt;Read: Read validators/email.js
+    Read-&gt;&gt;Files: Reads file
+    Files-&gt;&gt;Read: File content
+    Read-&gt;&gt;Claude: Content in context
+
+    Claude-&gt;&gt;You: "Email validation is in validators/email.js&lt;br/&gt;Using regex: /^[^@]+@[^@]+\\.[^@]+$/"
+
+    Note over Claude: Combined:&lt;br/&gt;• Training (validation concepts)&lt;br/&gt;• Tools (found and read your code)</code></pre>
+<h3 id="example-3-company-specific-question-need-skill-mcp">Example 3: Company-Specific Question (Need Skill + MCP)</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant You
+    participant Claude
+    participant Skill
+    participant MCP
+    participant Service
+
+    You-&gt;&gt;Claude: "Deploy to Expedia prod cluster"
+
+    Note over Claude: "Expedia" and "cluster" not in&lt;br/&gt;general training!
+
+    Claude-&gt;&gt;Skill: Load "egctl" skill
+    Skill-&gt;&gt;Claude: Instructions for egctl deployment
+
+    Note over Claude: Now I know egctl commands
+
+    Claude-&gt;&gt;MCP: Check cluster status
+    MCP-&gt;&gt;Service: Query Expedia service
+    Service-&gt;&gt;MCP: Cluster ready, version 3.2
+    MCP-&gt;&gt;Claude: Status info
+
+    Claude-&gt;&gt;You: "Cluster is ready (v3.2).&lt;br/&gt;Running: egctl deploy --env prod..."
+
+    Note over Claude: Combined:&lt;br/&gt;• Training (general deployment)&lt;br/&gt;• Skill (egctl specifics)&lt;br/&gt;• MCP (live cluster status)</code></pre>
+<hr />
+<h2 id="8-my-limitations-being-honest">8. My Limitations (Being Honest!)</h2>
+<h3 id="what-im-good-at">What I'm Good At</h3>
+<pre class="mermaid"><code>graph LR
+    GOOD[✅ I'm Good At]
+
+    GOOD --&gt; G1[General programming&lt;br/&gt;Common patterns]
+    GOOD --&gt; G2[Reading &amp; understanding&lt;br/&gt;your code]
+    GOOD --&gt; G3[Searching &amp; finding&lt;br/&gt;information]
+    GOOD --&gt; G4[Following instructions&lt;br/&gt;from CLAUDE.md &amp; skills]
+    GOOD --&gt; G5[Learning from context&lt;br/&gt;within session]
+
+    style GOOD fill:#c8e6c9</code></pre>
+<h3 id="what-im-not-good-at">What I'm Not Good At</h3>
+<pre class="mermaid"><code>graph LR
+    BAD[⚠️ I'm Not Good At]
+
+    BAD --&gt; B1[Remembering across sessions&lt;br/&gt;*Context resets*]
+    BAD --&gt; B2[Knowing internal systems&lt;br/&gt;*Without documentation*]
+    BAD --&gt; B3[Guessing requirements&lt;br/&gt;*Need you to tell me*]
+    BAD --&gt; B4[Knowing latest events&lt;br/&gt;*After Jan 2025 cutoff*]
+    BAD --&gt; B5[Reading minds&lt;br/&gt;*You must be explicit*]
+
+    style BAD fill:#ffab91</code></pre>
+<h3 id="common-misconceptions">Common Misconceptions</h3>
+<table>
+<thead>
+<tr>
+<th>❌ Wrong Belief</th>
+<th>✅ Reality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Claude knows my entire codebase"</td>
+<td>I only know files I've read or searched</td>
+</tr>
+<tr>
+<td>"Claude remembers from last session"</td>
+<td>Each session starts fresh (but CLAUDE.md loads)</td>
+</tr>
+<tr>
+<td>"Claude knows all Expedia systems"</td>
+<td>I only know what's documented or accessible via MCP</td>
+</tr>
+<tr>
+<td>"Claude knows the latest news"</td>
+<td>Training cutoff is January 2025, but I can search web</td>
+</tr>
+<tr>
+<td>"Claude can see my screen"</td>
+<td>I can only see files you ask me to read</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-how-to-help-me-know-what-you-need">9. How to Help Me Know What You Need</h2>
+<h3 id="be-explicit">Be Explicit</h3>
+<pre class="mermaid"><code>graph TB
+    subgraph GOOD[✅ Good: Be Specific]
+        G1["Fix the authentication bug&lt;br/&gt;in src/auth/login.js"]
+        G2["Use PostgreSQL instead of MySQL&lt;br/&gt;for the user database"]
+        G3["Follow our company's API guidelines&lt;br/&gt;in docs/api-standards.md"]
+    end
+
+    subgraph BAD[❌ Vague: Hard to Help]
+        B1["Fix the bug"]
+        B2["Use a database"]
+        B3["Follow best practices"]
+    end
+
+    style GOOD fill:#c8e6c9
+    style BAD fill:#ffab91</code></pre>
+<h3 id="provide-context">Provide Context</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant You
+    participant Claude
+
+    Note over You,Claude: ❌ Vague Request
+
+    You-&gt;&gt;Claude: "The login isn't working"
+    Claude-&gt;&gt;You: "Can you show me the code?&lt;br/&gt;What's the error?&lt;br/&gt;Which file?"
+
+    Note over You,Claude: Many back-and-forth messages
+
+    Note over You,Claude: ✅ Clear Request
+
+    You-&gt;&gt;Claude: "Login fails with 401 error.&lt;br/&gt;See src/auth/login.ts&lt;br/&gt;Error on line 42"
+    Claude-&gt;&gt;You: "I see the issue. The token&lt;br/&gt;validation is missing..."
+
+    Note over You,Claude: Immediate, focused help</code></pre>
+<h3 id="use-project-documentation">Use Project Documentation</h3>
+<pre class="mermaid"><code>graph TB
+    DOC[📋 Help Me Know by Documenting]
+
+    DOC --&gt; D1[📄 CLAUDE.md&lt;br/&gt;Always use pnpm&lt;br/&gt;Test before commit]
+    DOC --&gt; D2[📚 Skills&lt;br/&gt;egctl deployment process&lt;br/&gt;API guidelines]
+    DOC --&gt; D3[🔌 MCP Servers&lt;br/&gt;Connect to internal services&lt;br/&gt;Access company data]
+    DOC --&gt; D4[💬 Tell Me Directly&lt;br/&gt;We use microservices&lt;br/&gt;This is Node.js 20]
+
+    style DOC fill:#c8e6c9
+    style D1 fill:#fff9c4
+    style D2 fill:#ce93d8
+    style D3 fill:#ffab91
+    style D4 fill:#e1f5ff</code></pre>
+<hr />
+<h2 id="10-summary">10. Summary</h2>
+<h3 id="the-truth-about-my-knowledge">The Truth About My Knowledge</h3>
+<pre class="mermaid"><code>graph TB
+    CLAUDE[🤖 Claude Code's Knowledge]
+
+    subgraph STATIC[Static Knowledge - Baked In]
+        S1[🧠 Training&lt;br/&gt;General knowledge&lt;br/&gt;up to Jan 2025]
+    end
+
+    subgraph DYNAMIC[Dynamic Knowledge - Per Session]
+        D1[📦 Context&lt;br/&gt;Current conversation&lt;br/&gt;Files I've read]
+        D2[📋 CLAUDE.md&lt;br/&gt;Project rules]
+        D3[📚 Skills&lt;br/&gt;Domain expertise]
+    end
+
+    subgraph ACTIVE[Active Knowledge - I Look It Up]
+        A1[🔍 Search&lt;br/&gt;Find in codebase]
+        A2[📖 Read&lt;br/&gt;Read files]
+        A3[🌐 Web&lt;br/&gt;Current info]
+        A4[🔌 MCP&lt;br/&gt;External services]
+    end
+
+    CLAUDE --&gt; STATIC
+    CLAUDE --&gt; DYNAMIC
+    CLAUDE --&gt; ACTIVE
+
+    NOTE[I combine all sources&lt;br/&gt;to answer your questions]
+
+    STATIC --&gt; NOTE
+    DYNAMIC --&gt; NOTE
+    ACTIVE --&gt; NOTE
+
+    style CLAUDE fill:#c8e6c9
+    style STATIC fill:#bbdefb
+    style DYNAMIC fill:#fff9c4
+    style ACTIVE fill:#ffab91
+    style NOTE fill:#e1f5ff</code></pre>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<ol>
+<li><strong>Training</strong> = General knowledge frozen at January 2025</li>
+<li><strong>Context</strong> = What I see in current session (your messages + files I read)</li>
+<li><strong>Tools</strong> = How I actively find information (search, read, web, MCP)</li>
+<li><strong>Extensions</strong> = How you teach me about your project (CLAUDE.md, Skills, MCP)</li>
+</ol>
+<h3 id="im-most-effective-when">I'm Most Effective When:</h3>
+<p>✅ You tell me what you're working on
+✅ You point me to relevant files
+✅ You use CLAUDE.md for project rules
+✅ You create skills for company-specific knowledge
+✅ You connect MCP servers to internal systems
+✅ You're specific about what you need</p>
+<h3 id="i-struggle-when">I Struggle When:</h3>
+<p>❌ You assume I know your codebase without reading it
+❌ You refer to internal systems without documentation
+❌ You're vague about requirements
+❌ You expect me to remember from previous sessions
+❌ You ask about very recent events (after Jan 2025)</p>
+<hr />
+<h2 id="final-thought">Final Thought</h2>
+<p><strong>I'm not all-knowing, but I'm good at learning!</strong></p>
+<p>Think of me as a really smart assistant who:
+- Has read a LOT of programming books (training)
+- Can quickly read and understand your code (tools)
+- Remembers our conversation (context)
+- Can look things up instantly (search, web, MCP)
+- Follows your instructions precisely (CLAUDE.md, Skills)</p>
+<p>The better you teach me about your project (through documentation, skills, and clear communication), the better I can help! 🚀</p>
+<hr />
+<h2 id="questions-to-reflect-on">Questions to Reflect On</h2>
+<pre class="mermaid"><code>graph LR
+    Q1{Does Claude know&lt;br/&gt;about my internal&lt;br/&gt;company systems?}
+    Q1 --&gt;|Only if| A1[Documented in Skills&lt;br/&gt;or accessible via MCP]
+
+    Q2{Will Claude remember&lt;br/&gt;from last session?}
+    Q2 --&gt;|Only| A2[CLAUDE.md loads again&lt;br/&gt;But not conversation]
+
+    Q3{How does Claude know&lt;br/&gt;where code is?}
+    Q3 --&gt;|By| A3[Searching with Grep/Glob&lt;br/&gt;or you telling me]
+
+    style Q1 fill:#e1f5ff
+    style Q2 fill:#e1f5ff
+    style Q3 fill:#e1f5ff
+    style A1 fill:#c8e6c9
+    style A2 fill:#c8e6c9
+    style A3 fill:#c8e6c9</code></pre>
+<p>Now you understand how I "know" things - it's a combination of training, context, tools, and the extensions you add! 🎓</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../claude-code-explained/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Beginner&#39;s Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Beginner's Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../mcp-guide/" class="md-footer__link md-footer__link--next" aria-label="Next: MCP Guide">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                MCP Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/abdheshkumar"  target="_blank" rel="noopener">Abdhesh Kumar</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/abdheshkumar" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/abdhesh_rkg" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/abdhesh" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.expand", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
