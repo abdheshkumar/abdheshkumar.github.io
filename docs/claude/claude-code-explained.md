@@ -627,21 +627,27 @@ One important concept: **context** is Claude's short-term memory for the current
 
 ```mermaid
 graph TB
-    subgraph CONTEXT[Claude's Context - What Claude Remembers]
-        SYSTEM[System Instructions]
-        CLAUDE_MD[CLAUDE.md content]
-        SKILLS_DESC[Skill descriptions]
-        HISTORY[Your conversation]
-        FILES[Files Claude read]
-        TOOLS[Available tools from MCP]
+    subgraph CONTEXT["Claude's Context"]
+        SYSTEM["System Instructions"]
+        CLAUDE_MD["CLAUDE.md content"]
+        SKILLS_DESC["Skill descriptions"]
+        HISTORY["Your conversation"]
+        FILES["Files Claude read"]
+        TOOLS["Available tools from MCP"]
     end
 
-    MODEL[🧠 Claude's Brain] -->|Processes| CONTEXT
-    CONTEXT -->|Informs| DECISIONS[Claude's Decisions]
+    MODEL["Claude's Brain"] -->|Processes| CONTEXT
+    CONTEXT -->|Informs| DECISIONS["Claude's Decisions"]
 
     style CONTEXT fill:#fff9c4
     style MODEL fill:#bbdefb
     style DECISIONS fill:#c8e6c9
+    style SYSTEM fill:#fff9c4,stroke:#999
+    style CLAUDE_MD fill:#fff9c4,stroke:#999
+    style SKILLS_DESC fill:#fff9c4,stroke:#999
+    style HISTORY fill:#fff9c4,stroke:#999
+    style FILES fill:#fff9c4,stroke:#999
+    style TOOLS fill:#fff9c4,stroke:#999
 ```
 
 ### Context Costs by Feature

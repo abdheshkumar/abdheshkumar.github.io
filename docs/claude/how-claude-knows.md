@@ -6,20 +6,20 @@
 
 ```mermaid
 graph TB
-    subgraph TRAINING[1. Training Knowledge - What I Learned]
+    subgraph TRAINING["1. Training Knowledge"]
         T1[📚 Books, articles, documentation<br/>up to January 2025]
         T2[💻 Code from open source<br/>programming patterns]
         T3[🌐 Public internet content<br/>General knowledge]
     end
 
-    subgraph CONTEXT[2. Session Context - What I See Now]
+    subgraph CONTEXT["2. Session Context"]
         C1[💬 Your conversation<br/>What you tell me]
         C2[📄 Files I read<br/>Your project code]
         C3[📋 CLAUDE.md<br/>Project instructions]
         C4[📚 Loaded skills<br/>Domain knowledge]
     end
 
-    subgraph TOOLS[3. Real-Time Tools - What I Can Access]
+    subgraph TOOLS["3. Real-Time Tools"]
         TO1[🔍 Search your codebase<br/>Grep, Glob]
         TO2[📖 Read any file<br/>Read tool]
         TO3[🌐 Browse the web<br/>WebFetch]
@@ -50,7 +50,7 @@ I'm an AI model (Claude Sonnet 4.5) trained on a massive dataset. Think of it li
 
 ```mermaid
 graph LR
-    subgraph TRAINING_DATA[Training Data - Before January 2025]
+    subgraph TRAINING_DATA["Training Data"]
         D1[📚 Books & Articles]
         D2[💻 Open Source Code<br/>GitHub, Stack Overflow]
         D3[🌐 Websites & Docs]
