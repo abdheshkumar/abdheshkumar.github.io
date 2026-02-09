@@ -54,16 +54,16 @@ graph TB
     end
 
     %% Connections
-    U <-->|"Chat interface"| MAIN
-    TOOLS -->|"Task tool spawns"| SUBAGENTS
-    SUBAGENTS -->|"Results return to"| MAIN
+    U <-->|Chat interface| MAIN
+    TOOLS -->|Task tool spawns| SUBAGENTS
+    SUBAGENTS -->|Results return to| MAIN
 
-    PLUGINS -->|"Contains"| SKILLS
-    SKILLS -->|"Loaded into<br/>/skill-name"| CTX
-    MKT -->|"Defines"| PLUGINS
+    PLUGINS -->|Contains| SKILLS
+    SKILLS -->|Loaded into<br/>/skill-name| CTX
+    MKT -->|Defines| PLUGINS
 
-    U -->|"/plugin install"| PLUGINS
-    U -->|"/skill-name"| SKILLS
+    U -->|/plugin install| PLUGINS
+    U -->|/skill-name| SKILLS
 
     style USER fill:#e1f5ff
     style SESSION fill:#fff4e1

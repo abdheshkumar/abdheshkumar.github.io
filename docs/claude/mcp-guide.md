@@ -120,10 +120,10 @@ graph LR
         T4[search_documents]
     end
 
-    CLAUDE -->|"Can call"| T1
-    CLAUDE -->|"Can call"| T2
-    CLAUDE -->|"Can call"| T3
-    CLAUDE -->|"Can call"| T4
+    CLAUDE -->|Can call| T1
+    CLAUDE -->|Can call| T2
+    CLAUDE -->|Can call| T3
+    CLAUDE -->|Can call| T4
 
     style CLAUDE fill:#c8e6c9
     style T1 fill:#ce93d8
@@ -147,10 +147,10 @@ graph LR
         R4[docs://api-reference]
     end
 
-    CLAUDE -->|"Can read"| R1
-    CLAUDE -->|"Can read"| R2
-    CLAUDE -->|"Can read"| R3
-    CLAUDE -->|"Can read"| R4
+    CLAUDE -->|Can read| R1
+    CLAUDE -->|Can read| R2
+    CLAUDE -->|Can read| R3
+    CLAUDE -->|Can read| R4
 
     style CLAUDE fill:#c8e6c9
     style R1 fill:#80cbc4
@@ -173,9 +173,9 @@ graph LR
         P3[code-review-template]
     end
 
-    CLAUDE -->|"Can use"| P1
-    CLAUDE -->|"Can use"| P2
-    CLAUDE -->|"Can use"| P3
+    CLAUDE -->|Can use| P1
+    CLAUDE -->|Can use| P2
+    CLAUDE -->|Can use| P3
 
     style CLAUDE fill:#c8e6c9
     style P1 fill:#fff59d

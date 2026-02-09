@@ -13,8 +13,8 @@ Claude Code is an AI coding assistant that lives in your terminal. Think of it l
 
 ```mermaid
 graph LR
-    YOU[👤 You] -->|"Ask questions<br/>Request code changes"| CC[🤖 Claude Code]
-    CC -->|"Reads files<br/>Writes code<br/>Runs commands"| PROJECT[📁 Your Project]
+    YOU[👤 You] -->|Ask questions<br/>Request code changes| CC[🤖 Claude Code]
+    CC -->|Reads files<br/>Writes code<br/>Runs commands| PROJECT[📁 Your Project]
     CC -->|Responds| YOU
 
     style YOU fill:#e1f5ff
@@ -469,9 +469,9 @@ graph TB
     PLUGIN --> MCP[🔌 MCP Servers]
     PLUGIN --> CONFIG[⚙️ Configuration]
 
-    SKILLS --> S1[/deploy skill]
-    SKILLS --> S2[/review skill]
-    SKILLS --> S3[/test skill]
+    SKILLS --> S1["/deploy skill"]
+    SKILLS --> S2["/review skill"]
+    SKILLS --> S3["/test skill"]
 
     style PLUGIN fill:#ce93d8
     style SKILLS fill:#bbdefb
@@ -479,24 +479,6 @@ graph TB
     style MCP fill:#ffab91
     style CONFIG fill:#c8e6c9
 ```
-
-### Example: Platform Plugin
-
-**Plugin: `platform-skills`**
-
-Includes:
-- `/egctl` skill - Deploy with egctl
-- `/stark` skill - Work with Stark platform
-- `/ci-workflows` skill - CI/CD workflows
-- Post-commit hook - Run tests
-- Slack MCP server - Post notifications
-
-**Installation:**
-```bash
-/plugin install platform-skills
-```
-
-Now you have access to all these capabilities!
 
 ### When to Use
 - Share capabilities across multiple projects
@@ -513,7 +495,7 @@ Features often combine to create powerful workflows. Here are common patterns:
 
 ```mermaid
 graph LR
-    CM[📄 CLAUDE.md<br/>"Always follow API rules"]
+    CM[📄 CLAUDE.md<br/>Always follow API rules]
     SK[📚 Skill<br/>Full API documentation]
     CLAUDE[🤖 Claude]
 
@@ -572,8 +554,8 @@ graph TB
     MCP -->|Provides tools| CLAUDE
     SKILL -->|Provides knowledge| CLAUDE
 
-    CLAUDE -->|"Knows how to query<br/>(from skill)"| Q[Smart Queries]
-    CLAUDE -->|"Can execute queries<br/>(from MCP)"| Q
+    CLAUDE -->|Knows how to query<br/>from skill| Q[Smart Queries]
+    CLAUDE -->|Can execute queries<br/>from MCP| Q
 
     style MCP fill:#ffab91
     style SKILL fill:#ce93d8
@@ -703,20 +685,20 @@ Let's see how a real project might use all these features together.
 ```mermaid
 graph TB
     subgraph ALWAYS_ON[Always Active]
-        CM[📄 CLAUDE.md<br/>"Use TypeScript<br/>Run tests before commit<br/>Follow REST conventions"]
-        MCP_DB[🔌 MCP: Database]
-        MCP_SLACK[🔌 MCP: Slack]
+        CM[📄 CLAUDE.md<br/>Use TypeScript<br/>Run tests before commit<br/>Follow REST conventions]
+        MCP_DB[🔌 MCP Database]
+        MCP_SLACK[🔌 MCP Slack]
     end
 
     subgraph ON_DEMAND[On-Demand]
-        SK_DEPLOY[📚 /deploy skill<br/>Deployment workflow]
+        SK_DEPLOY["📚 /deploy skill<br/>Deployment workflow"]
         SK_API[📚 API docs skill<br/>Endpoint reference]
-        SK_REVIEW[📚 /review skill<br/>Code review checklist]
+        SK_REVIEW["📚 /review skill<br/>Code review checklist"]
     end
 
     subgraph BACKGROUND[Background Automation]
-        HK_LINT[⚡ Hook: ESLint<br/>After file edits]
-        HK_NOTIFY[⚡ Hook: Notify<br/>On deploy]
+        HK_LINT[⚡ Hook ESLint<br/>After file edits]
+        HK_NOTIFY[⚡ Hook Notify<br/>On deploy]
     end
 
     subgraph WORKERS[Workers]
@@ -727,7 +709,6 @@ graph TB
 
     ALWAYS_ON --> CLAUDE
     ON_DEMAND -.->|When needed| CLAUDE
-    BACKGROUND -.->|On events| BACKGROUND
     CLAUDE -->|Spawns| WORKERS
 
     style CLAUDE fill:#c8e6c9

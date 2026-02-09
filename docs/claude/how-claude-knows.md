@@ -389,7 +389,7 @@ graph TB
     SKILL --> K1
 
     K1 -->|Now yes!| K2{Do I know<br/>project specifics?}
-    K2 -->|Check CLAUDE.md| CM[📋 CLAUDE.md says:<br/>"Use pnpm, test first"]
+    K2 -->|Check CLAUDE.md| CM[📋 CLAUDE.md says:<br/>Use pnpm, test first]
 
     K2 --> K3{Do I know<br/>current state?}
     K3 --> READ[📖 Read deployment config]
@@ -697,10 +697,10 @@ sequenceDiagram
 graph TB
     DOC[📋 Help Me Know by Documenting]
 
-    DOC --> D1[📄 CLAUDE.md<br/>"Always use pnpm"<br/>"Test before commit"]
+    DOC --> D1[📄 CLAUDE.md<br/>Always use pnpm<br/>Test before commit]
     DOC --> D2[📚 Skills<br/>egctl deployment process<br/>API guidelines]
     DOC --> D3[🔌 MCP Servers<br/>Connect to internal services<br/>Access company data]
-    DOC --> D4[💬 Tell Me Directly<br/>"We use microservices"<br/>"This is Node.js 20"]
+    DOC --> D4[💬 Tell Me Directly<br/>We use microservices<br/>This is Node.js 20]
 
     style DOC fill:#c8e6c9
     style D1 fill:#fff9c4
